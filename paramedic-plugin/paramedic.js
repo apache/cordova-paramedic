@@ -31,7 +31,7 @@ Paramedic.prototype.initialize = function() {
     this.socket = io.connect(connectionUri);
 
     this.socket.on('connect', function () {
-        console.log("Paramedic has been susccessfully connected to server");
+        console.log('Paramedic has been susccessfully connected to server');
         if (typeof device != 'undefined') me.socket.emit('deviceInfo', device);
     });
 
@@ -85,7 +85,9 @@ function loadParamedicServerUrl() {
 
         return cfg.logurl || PARAMEDIC_SERVER_DEFAULT_URL;
 
-    } catch (ex) {}
+    } catch (ex) {
+        console.log('Unable to load paramedic server url: ' + ex);
+    }
 
     return PARAMEDIC_SERVER_DEFAULT_URL;
 }
