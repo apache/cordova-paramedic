@@ -111,10 +111,42 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --verbose
 
 ####--timeout (optional)
 
-Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes). 
+Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes).
 
 ```
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --timeout 30000
+```
+
+####--outputDir (optional)
+
+Directory location to store test results in junit format and the device logs
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --outputDir /Users/sampleuser/testresults
+```
+
+####--cleanUpAfterRun (optional)
+
+Flag to indicate the sample application folder must be deleted.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --cleanUpAfterRun
+```
+
+####--logMins (optional)
+
+Windows only parameter to indicate the duration for which the device logs to be fetched.
+
+```
+cordova-paramedic --platform windows --plugin cordova-plugin-inappbrowser --logMins 15
+```
+
+####--tccDb (optional)
+
+iOS only parameter. The path to the sample TCC DB file, with permissions, to be copied to the simulator.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
 ## Paramedic configuration file

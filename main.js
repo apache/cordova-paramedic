@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-var parseArgs = require('minimist'),
-    path = require('path'),
-    paramedic = require('./lib/paramedic'),
-    ParamedicConfig = require('./lib/ParamedicConfig');
+var parseArgs       = require('minimist');
+var path            = require('path');
+var paramedic       = require('./lib/paramedic');
+var ParamedicConfig = require('./lib/ParamedicConfig');
 
-var USAGE = "Error missing args. \n" +
+var USAGE           = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
     "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
                     "\tPath to platform can be specified as link to git repo like:\n" +
@@ -24,8 +24,10 @@ var USAGE = "Error missing args. \n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--useTunnel : (optional) use tunneling instead of local address. default is false\n" +
     "--config : (optional) read configuration from paramedic configuration file\n" +
-    "--reportSavePath: (optional) path to save Junit results file\n" +
-    "--cleanUpAfterRun: (optional) cleans up the application after the run.";
+    "--outputDir: (optional) path to save Junit results file & Device logs\n" +
+    "--cleanUpAfterRun: (optional) cleans up the application after the run\n" +
+    "--logMins: (optional) Windows only - specifies number of minutes to get logs\n" +
+    "--tccDb: (optional) iOS only - specifies the path for the TCC.db file to be copied.";
 
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
@@ -36,6 +38,30 @@ if (pathToParamedicConfig || // --config
     var paramedicConfig = pathToParamedicConfig ?
         ParamedicConfig.parseFromFile(pathToParamedicConfig):
         ParamedicConfig.parseFromArguments(argv);
+
+    if(argv.plugin) {
+        paramedicConfig.setPlugins(argv.plugin);
+    }
+
+    if(argv.outputDir) {
+        paramedicConfig.setOutputDir(argv.outputDir);
+    }
+
+    if(argv.logMins) {
+        paramedicConfig.setLogMins(argv.logMins);
+    }
+
+    if(argv.tccDb){
+        paramedicConfig.setTccDb(argv.tccDb);
+    }
+
+    if(argv.platform) {
+        paramedicConfig.setPlatform(argv.platform);
+    }
+
+    if(argv.action) {
+        paramedicConfig.setAction(argv.action);
+    }
 
     paramedic.run(paramedicConfig)
     .catch(function (error) {
