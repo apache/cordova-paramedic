@@ -59,14 +59,6 @@ Just builds the project, without running the tests.
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuild
 ```
 
-####--device (optional)
-
-Tests must be run on connected device instead of emulator.
-
-```
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --device
-```
-
 ####--externalServerUrl (optional)
 
 Useful when testing on real device (`--device` parameter) so that tests results from device could be posted back to paramedic server.
@@ -179,5 +171,4 @@ You can also use cordova-paramedic as a module directly :
   var paramedic = require('cordova-paramedic');
   paramedic.run(config);
 ```
-
 
