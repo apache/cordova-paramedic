@@ -25,7 +25,7 @@ var paramedic       = require('./lib/paramedic');
 var ParamedicConfig = require('./lib/ParamedicConfig');
 
 var USAGE           = "Error missing args. \n" +
-    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify]\n" +
+    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version]\n" +
     "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
                     "\tPath to platform can be specified as link to git repo like:\n" +
                     "\twindows@https://github.com/apache/cordova-windows.git\n" +
@@ -38,6 +38,7 @@ var USAGE           = "Error missing args. \n" +
     "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
               "\t(defaults to 10 minutes) \n" +
     "`PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server(default is from 8008 to 8009)\n" +
+    "--version : (optional) prints cordova-paramedic version and exits\n" +
     "--target : (optional) target to deploy to\n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
@@ -64,7 +65,10 @@ var USAGE           = "Error missing args. \n" +
 var argv = parseArgs(process.argv.slice(2));
 var pathToParamedicConfig = argv.config && path.resolve(argv.config);
 
-if (pathToParamedicConfig || // --config
+if (argv.version) {
+    console.log(require('./package.json')['version']);
+    process.exit(0);
+} else if (pathToParamedicConfig || // --config
     argv.platform && argv.plugin) { // or --platform and --plugin
 
     var paramedicConfig = pathToParamedicConfig ?
