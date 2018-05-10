@@ -1,7 +1,7 @@
 {
   "name": "cordova-paramedic",
   "version": "0.5.0",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
   "bin": {
@@ -33,10 +33,10 @@
   "dependencies": {
     "cordova-common": "^1.1.0",
     "expect-telnet": "^0.5.2",
-    "jasmine": "2.4.1",
+    "jasmine": "^3.1.0",
     "jasmine-reporters": "^2.1.1",
     "jasmine-spec-reporter": "^2.4.0",
-    "localtunnel": "~1.5.0",
+    "localtunnel": "^1.9.0",
     "minimist": "~1.1.0",
     "path-extra": "^3.0.0",
     "q": "^1.4.1",
@@ -44,7 +44,7 @@
     "sauce-connect-launcher": "^1.2.2",
     "saucelabs": "^1.2.0",
     "shelljs": "~0.3.0",
-    "socket.io": "^1.4.5",
+    "socket.io": "^2.1.0",
     "tcp-port-used": "^0.1.2",
     "tmp": "0.0.25",
     "tree-kill": "^1.1.0",
