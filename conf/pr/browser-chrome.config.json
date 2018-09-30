@@ -1,0 +1,8 @@
+{
+    "platform": "browser",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true,
+    "sauceDeviceName": "chrome",
+    "saucePlatformVersion": "59.0"
+}

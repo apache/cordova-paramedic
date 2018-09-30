@@ -1,0 +1,8 @@
+{
+    "platform": "browser@https://github.com/apache/cordova-browser",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true,
+    "sauceDeviceName": "MicrosoftEdge",
+    "saucePlatformVersion": "15.15063"
+}

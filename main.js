@@ -23,6 +23,7 @@ var parseArgs       = require('minimist');
 var path            = require('path');
 var paramedic       = require('./lib/paramedic');
 var ParamedicConfig = require('./lib/ParamedicConfig');
+var util            = require('./lib/utils').utilities;
 
 var USAGE           = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version]\n" +
@@ -49,9 +50,10 @@ var USAGE           = "Error missing args. \n" +
     "--logMins : (optional) Windows only - specifies number of minutes to get logs\n" +
     "--outputDir : (optional) path to save Junit results file & Device logs\n" +
     "--sauceAppiumVersion : (optional) Appium version to use when running on Saucelabs. For example, \"1.5.3\"\n" +
-    "--sauceDeviceName : (optional) Name of the SauceLabs emulator. For example, \"iPhone Simulator\"\n" +
+    "--sauceDeviceName : (optional) Name of the SauceLabs emulator/browser. For example, \"iPhone Simulator\" or \"firefox\"\n" +
     "--sauceKey : (optional) Saucelabs access key\n" +
-    "--saucePlatformVersion : (optional) Platform version of the SauceLabs emulator. For example, \"9.3\"\n" +
+    "--saucePlatformVersion : (optional) Version of the emulator OS or version of the browser. For example, \"9.3\" or \"54.0\"\n" +
+    "--sauceTunnelId : (optional) Tunnel identifier to use. Only usable if you have Sauce Connect up\n"
     "--sauceUser : (optional) Saucelabs username\n" +
     "--shouldUseSauce : (optional) run tests on Sauce Labs\n" +
     "--skipAppiumTests : (optional) Do not run Appium tests\n" +
@@ -64,7 +66,7 @@ var USAGE           = "Error missing args. \n" +
     "";
 
 var argv = parseArgs(process.argv.slice(2));
-var pathToParamedicConfig = argv.config && path.resolve(argv.config);
+var pathToParamedicConfig = util.getConfigPath(argv.config);
 
 if (argv.version) {
     console.log(require('./package.json')['version']);
@@ -133,6 +135,10 @@ if (argv.version) {
 
     if (argv.sauceAppiumVersion) {
         paramedicConfig.setSauceAppiumVersion(argv.sauceAppiumVersion);
+    }
+
+    if (argv.sauceTunnelId) {
+        paramedicConfig.setSauceTunnelId(argv.sauceTunnelId);
     }
 
     if (argv.useTunnel) {

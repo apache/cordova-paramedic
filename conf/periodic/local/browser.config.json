@@ -1,0 +1,6 @@
+{
+    "platform": "browser@https://github.com/apache/cordova-browser.git",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true
+}

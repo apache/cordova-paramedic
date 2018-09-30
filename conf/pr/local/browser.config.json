@@ -1,0 +1,6 @@
+{
+    "platform": "browser",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true
+}

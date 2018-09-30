@@ -1,0 +1,8 @@
+{
+    "platform": "browser",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true,
+    "sauceDeviceName": "firefox",
+    "saucePlatformVersion": "54.0"
+}

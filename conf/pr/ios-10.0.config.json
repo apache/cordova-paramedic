@@ -3,5 +3,6 @@
     "action": "run",
     "cleanUpAfterRun": true,
     "verbose": true,
-    "saucePlatformVersion": "10.0"
+    "saucePlatformVersion": "10.0",
+    "sauceAppiumVersion": "1.6.4"
 }
