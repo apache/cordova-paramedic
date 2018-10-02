@@ -5,6 +5,7 @@ install:
   - npm install cordova
   - npm install
   - npm link
+  - powershell .\scripts\appveyor\install-android-sdk.ps1
 
 build: off
 
