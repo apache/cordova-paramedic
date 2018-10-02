@@ -36,3 +36,5 @@ Function Install-AndroidSDK
     $sdks = Get-AllAndroidSDKs |? { $_.name -like "sdk platform*API $Level*" -or $_.name -like "google apis*api $Level" }
     Execute-AndroidSDKInstall -sdks $sdks
 }
+
+Install-AndroidSDK 28
