@@ -11,4 +11,5 @@ build: off
 test_script:
   - node --version
   - npm --version
+  - echo y | android update sdk -u --filter android-27
   - npm run test-appveyor
