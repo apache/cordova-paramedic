@@ -154,6 +154,14 @@ iOS only parameter. The path to the sample TCC DB file, with permissions, to be 
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
+#### `--target` (optional)
+
+Android only parameter. The device ID (from `adb devices`) of a device the tests should be run on.
+
+```
+cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 02e7f7e9215da7f8
+```
+
 ### Sauce-only arguments
 
 #### `--shouldUseSauce` (optional)
