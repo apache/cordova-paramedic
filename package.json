@@ -29,7 +29,7 @@
     "medic",
     "test"
   ],
-  "author": "Jesse MacFadyen",
+  "author": "Apache Software Foundation",
   "dependencies": {
     "cordova-common": "^1.1.0",
     "expect-telnet": "^0.5.2",
