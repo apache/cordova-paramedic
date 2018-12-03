@@ -18,7 +18,7 @@
     "test": "npm run jshint & npm run test-ios",
     "jshint": "node node_modules/jshint/bin/jshint lib/",
     "test-appveyor": "npm run test-windows",
-    "test-travis": "npm run test-ios",
+    "test-travis": "npm run jshint & npm run test-ios",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
     "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
     "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
