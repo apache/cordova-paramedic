@@ -1,7 +1,7 @@
 {
   "name": "cordova-paramedic",
-  "version": "0.6.0-dev",
-  "license": "Apache-2.0",
+  "version": "0.5.0",
+  "license": "Apache 2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
   "bin": {
@@ -28,7 +28,7 @@
     "medic",
     "test"
   ],
-  "author": "Apache Software Foundation",
+  "author": "Jesse MacFadyen",
   "dependencies": {
     "cordova-common": "^1.1.0",
     "expect-telnet": "^0.5.2",
