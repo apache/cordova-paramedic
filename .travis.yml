@@ -1,6 +1,6 @@
 language: objective-c
 node_js:
-  - "0.10"
+  - "6.2"
 install:
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config 
   - npm install cordova

@@ -13,8 +13,7 @@ See this [workshop instructions for more explanation](https://kerrishotts.github
 
 - Android
 - iOS
-- Windows Phone 8
-- Windows (Windows 8.1, Windows Phone 8.1, Windows 10 Tablet/PC)
+- Windows (Windows 8.1, Windows 10 UWP phone,tablet,desktop)
 - Browser
 - OSX
 
@@ -122,7 +121,7 @@ Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes).
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --timeout 30000
 ```
 
-#### `--outputDir (optional)
+#### `--outputDir` (optional)
 
 Directory location to store test results in junit format and the device logs
 
@@ -152,6 +151,14 @@ iOS only parameter. The path to the sample TCC DB file, with permissions, to be 
 
 ```
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
+```
+
+#### `--target` (optional)
+
+Android only parameter. The device ID (from `adb devices`) of a device the tests should be run on.
+
+```
+cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 02e7f7e9215da7f8
 ```
 
 ### Sauce-only arguments

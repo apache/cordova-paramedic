@@ -27,7 +27,7 @@ var util            = require('./lib/utils').utilities;
 
 var USAGE           = "Error missing args. \n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version]\n" +
-    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android', 'wp8'.\n" +
+    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android'.\n" +
                     "\tPath to platform can be specified as link to git repo like:\n" +
                     "\twindows@https://github.com/apache/cordova-windows.git\n" +
                     "\tor path to local copied git repo like:\n" +
@@ -65,7 +65,9 @@ var USAGE           = "Error missing args. \n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
     "";
 
-var argv = parseArgs(process.argv.slice(2));
+var argv = parseArgs(process.argv.slice(2), {
+    "string": ["plugin"]
+});
 var pathToParamedicConfig = util.getConfigPath(argv.config);
 
 if (argv.version) {

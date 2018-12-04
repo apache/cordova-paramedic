@@ -1,6 +1,6 @@
 {
   "name": "cordova-paramedic",
-  "version": "0.5.0",
+  "version": "0.6.0-dev",
   "license": "Apache-2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
@@ -17,19 +17,19 @@
   "scripts": {
     "test": "npm run jshint & npm run test-ios",
     "jshint": "node node_modules/jshint/bin/jshint lib/",
-    "test-appveyor": "npm run test-windows",
-    "test-travis": "npm run test-ios",
+    "test-appveyor": "npm run test-browser",
+    "test-travis": "npm run jshint & npm run test-ios",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
     "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
     "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
-    "test-wp8": "node main.js --platform wp8 --plugin ./spec/testable-plugin/"
+    "test-browser": "node main.js --platform browser --plugin ./spec/testable-plugin/"
   },
   "keywords": [
     "cordova",
     "medic",
     "test"
   ],
-  "author": "Jesse MacFadyen",
+  "author": "Apache Software Foundation",
   "dependencies": {
     "cordova-common": "^1.1.0",
     "expect-telnet": "^0.5.2",
