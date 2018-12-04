@@ -26,19 +26,19 @@ var ParamedicConfig = require('./lib/ParamedicConfig');
 var util            = require('./lib/utils').utilities;
 
 var USAGE           = "Error missing args. \n" +
-    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version]\n" +
-    "`PLATFORM` : the platform id. Currently supports 'ios', 'browser', 'windows', 'android'.\n" +
+    "\n" +
+    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --browserify --version ...]\n" +
+    "\n" +
+    "--platform PLATFORM : the platform id. Currently supports 'ios', 'browser', 'windows', 'android'.\n" +
                     "\tPath to platform can be specified as link to git repo like:\n" +
                     "\twindows@https://github.com/apache/cordova-windows.git\n" +
                     "\tor path to local copied git repo like:\n" +
                     "\twindows@../cordova-windows/\n" +
-    "`PATH` : the relative or absolute path to a plugin folder\n" +
+    "--plugin PATH : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
                     "\tYou may specify multiple --plugin flags and they will all\n" +
                     "\tbe installed and tested together.\n" +
-    "`MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
-              "\t(defaults to 10 minutes) \n" +
-    "`PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server(default is from 8008 to 8009)\n" +
+    "\n" +
     "--browserify : (optional) plugins are browserified into cordova.js \n" +
     "--buildName : (optional) Build name to show in Saucelabs dashboard\n" +
     "--ci : (optional) Skip tests that require user interaction\n" +
@@ -53,13 +53,16 @@ var USAGE           = "Error missing args. \n" +
     "--sauceDeviceName : (optional) Name of the SauceLabs emulator/browser. For example, \"iPhone Simulator\" or \"firefox\"\n" +
     "--sauceKey : (optional) Saucelabs access key\n" +
     "--saucePlatformVersion : (optional) Version of the emulator OS or version of the browser. For example, \"9.3\" or \"54.0\"\n" +
-    "--sauceTunnelId : (optional) Tunnel identifier to use. Only usable if you have Sauce Connect up\n"
+    "--sauceTunnelId : (optional) Tunnel identifier to use. Only usable if you have Sauce Connect up\n" + 
     "--sauceUser : (optional) Saucelabs username\n" +
     "--shouldUseSauce : (optional) run tests on Sauce Labs\n" +
     "--skipAppiumTests : (optional) Do not run Appium tests\n" +
     "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
+    "--startport/--endport `PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)\n" +
     "--target : (optional) target to deploy to\n" +
     "--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.\n" +
+    "--timeout `MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
+                "\t(defaults to 10 minutes) \n" +
     "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
