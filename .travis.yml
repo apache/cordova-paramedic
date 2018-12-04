@@ -1,13 +1,53 @@
-language: objective-c
-node_js:
-  - "6.2"
+sudo: false
+addons:
+  jwt:
+    secure: NJr2X/VRsRjy/6cQqrx1kVwNH8UmVq4Ns90UjHMYFeSjacczc42qOCgMfCOxN8FBa5T6H7vqGnloTdpp56Vm1BPSLqX/M3uT1gM9/yGDsgKzEC90tt2WrGSyp7C2LRs5+EF+bj5hvFd+iO4bLA7nTnOTzgxwwzzsau0ljxx1VHbVHi2xOwuK7/ShwOhxfkNEHeJ76X/1sjssKgU++tU3uUAdiBqUupqpQmWVPsxKTp4svOcNNlBKqk+SMX8EDmeU36AXC3QBMVWmpug0z55gmmGsu8bAWRo6iKc9U0B43g5Tgw3DaRs/cNNJWN3mX/04hVJFJEzHvGaTbEvOXngHyDAtuDl9FiHYZpJK3H5eRhcXAh6IQXloYnXTzEQCIaX3N9p8gpFmMgOhMPy5a0iSIv2wcU1bNtzfbD5JokJp0vLsFphSrvhlOfKwOg0pq/dU66P1MTwHj6bwmxPK+GtQu8hRY/pA/yd9sTyuwp8CUyKkLWTSoQCqQ9xXbyJmxU3B8obiDRA/321LD8m4jlJy9zJO+pt/wt7zCh081G3bFsyO8VYLkhIQzXYQpppVLHArwImGip82T52c7OUtqknlchLdjoYHVd5zT8k3gqY5mVE6bIS4OFkXAFrQnBUafvAILUfSE7vcrCeNh8UzfGIdq3wFad1zc2NnCx/L/PUgpVM=
+env:
+  global:
+  - SAUCE_USERNAME=snay
+  - TRAVIS_NODE_VERSION="4.2"
+matrix:
+  include:
+  - env: PLATFORM=local
+    os: osx
+    osx_image: xcode7.3
+    language: node_js
+    node_js: '4.2'
+  - env: PLATFORM=browser-chrome
+    os: linux
+    language: node_js
+    node_js: '4.2'
+  - env: PLATFORM=ios-10.0
+    os: osx
+    osx_image: xcode7.3
+    language: node_js
+    node_js: '4.2'
+  - env: PLATFORM=android-7.0
+    os: linux
+    language: android
+    jdk: oraclejdk8
+    android:
+      components:
+      - tools
+      - extra-android-m2repository
+      - build-tools-26.0.2
+before_install:
+- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
+- node --version
+- if [[ "$PLATFORM" =~ android ]]; then gradle --version; fi
+- if [[ "$PLATFORM" =~ local ]]; then npm install -g ios-deploy; fi
+- if [[ "$PLATFORM" =~ ios ]]; then npm install -g ios-deploy; fi
+- if [[ "$PLATFORM" =~ android ]]; then echo y | android update sdk -u --filter android-22,android-23,android-24,android-25,android-26,android-27;
+  fi
+- npm install -g cordova
 install:
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config 
-  - npm install cordova
-  - npm install ios-sim
-# w/o ios-deploy ios requirements check fails
-  - npm install ios-deploy
-  - npm install
-  - npm link
+- npm install
 script:
-  - npm run test-travis
+- if [[ "$PLATFORM" =~ local ]]; then npm run test-browser; fi
+- if [[ "$PLATFORM" =~ local ]]; then npm run test-ios; fi
+- if [[ "$PLATFORM" =~ TODO ]]; then npm run test-android; fi
+- if [[ "$PLATFORM" != local ]]; then
+  node main.js --config ./pr/$PLATFORM --plugin ./spec/testable-plugin/ --shouldUseSauce 
+  --buildName travis-paramedic-$TRAVIS_JOB_NUMBER;
+  fi
+
