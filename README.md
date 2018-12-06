@@ -47,9 +47,9 @@ A full Paramedic run will:
     <summary>Create and prepare the app</summary>
 
     1. Create a temporary Cordova project with `cordova create`
-    1. Install various plugins with `cordova plugin add ...`:
-        - the plugin to be tested (e.g. `cordova-plugin-inappbrowser`)
-        - the tests of this plugin (e.g. `cordova-plugin-inappbrowser\tests`)
+    1. Install various plugins with `cordova plugin add %local_path%` (e.g. `cordova plugin add ../cordova-plugin-inappbrowser`):
+        - the plugin to be tested (e.g. `../cordova-plugin-inappbrowser`)
+        - the tests of this plugin (e.g. `../cordova-plugin-inappbrowser/tests`)
         - `cordova-plugin-test-framework` (from npm)
         - local `paramedic-plugin`
     1. Update the app start page to the test page at `cdvtests/index.html` (provided by `cordova-plugin-test-framework` and the plugin tests)
