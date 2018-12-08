@@ -142,6 +142,7 @@ npm install -g cordova-paramedic
 git clone https://github.com/apache/cordova-paramedic
 # when cloning, you have to run `npm link` inside the checkout
 # or replace all occurences of `cordova-paramedic` in commands with `cordova-paramedic/main.js`
+# or `node cordova-paramedic/main.js` (on Windows)
 ```
 
 ## Usage
