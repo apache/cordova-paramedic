@@ -29,7 +29,7 @@ matrix:
       components:
       - tools
       - extra-android-m2repository
-      - build-tools-26.0.2
+      - build-tools-28.0.3
 before_install:
 # `language: android` has no Node.js installed, therefore we need to install it manually
 - if [[ "$PLATFORM" =~ android ]]; then nvm install $TRAVIS_NODE_VERSION; fi
@@ -37,7 +37,7 @@ before_install:
 - if [[ "$PLATFORM" =~ android ]]; then gradle --version; fi
 - if [[ "$PLATFORM" =~ local ]]; then npm install -g ios-deploy; fi
 - if [[ "$PLATFORM" =~ ios ]]; then npm install -g ios-deploy; fi
-- if [[ "$PLATFORM" =~ android ]]; then echo y | android update sdk -u --filter android-22,android-23,android-24,android-25,android-26,android-27;
+- if [[ "$PLATFORM" =~ android ]]; then echo y | android update sdk -u --filter android-22,android-23,android-24,android-25,android-26,android-27,android-28;
   fi
 - npm install -g cordova
 install:
