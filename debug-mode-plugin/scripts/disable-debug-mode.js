@@ -19,7 +19,7 @@
 
 module.exports = function (context) {
     var path = require('path');
-    var shell = context.requireCordovaModule('shelljs');
+    var shell = require('shelljs');
 
     var libPath        = path.resolve(context.opts.projectRoot, "platforms/windows/cordova/lib");
     var appUtilsPath   = path.join(libPath, "WindowsStoreAppUtils.ps1");
