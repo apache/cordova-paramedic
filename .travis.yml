@@ -1,7 +1,6 @@
 sudo: false
 
 addons:
-  # sauce labs key
   jwt:
     secure: NJr2X/VRsRjy/6cQqrx1kVwNH8UmVq4Ns90UjHMYFeSjacczc42qOCgMfCOxN8FBa5T6H7vqGnloTdpp56Vm1BPSLqX/M3uT1gM9/yGDsgKzEC90tt2WrGSyp7C2LRs5+EF+bj5hvFd+iO4bLA7nTnOTzgxwwzzsau0ljxx1VHbVHi2xOwuK7/ShwOhxfkNEHeJ76X/1sjssKgU++tU3uUAdiBqUupqpQmWVPsxKTp4svOcNNlBKqk+SMX8EDmeU36AXC3QBMVWmpug0z55gmmGsu8bAWRo6iKc9U0B43g5Tgw3DaRs/cNNJWN3mX/04hVJFJEzHvGaTbEvOXngHyDAtuDl9FiHYZpJK3H5eRhcXAh6IQXloYnXTzEQCIaX3N9p8gpFmMgOhMPy5a0iSIv2wcU1bNtzfbD5JokJp0vLsFphSrvhlOfKwOg0pq/dU66P1MTwHj6bwmxPK+GtQu8hRY/pA/yd9sTyuwp8CUyKkLWTSoQCqQ9xXbyJmxU3B8obiDRA/321LD8m4jlJy9zJO+pt/wt7zCh081G3bFsyO8VYLkhIQzXYQpppVLHArwImGip82T52c7OUtqknlchLdjoYHVd5zT8k3gqY5mVE6bIS4OFkXAFrQnBUafvAILUfSE7vcrCeNh8UzfGIdq3wFad1zc2NnCx/L/PUgpVM=
 env:
@@ -10,17 +9,12 @@ env:
     - TRAVIS_NODE_VERSION=6
     - ANDROID_API_LEVEL=28
     - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+    - XCODE_VERSION=xcode10.1
 
 language: node_js
-node_js: 
-  - "6"
+node_js: 6
 
-# yaml anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
-
-_ios: &_ios
-  os: osx
-  osx_image: xcode10.2
-
+# anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
 _android: &_android
   language: android
   os: linux
@@ -50,12 +44,15 @@ matrix:
     - env: PLATFORM=browser-edge
 
     - env: PLATFORM=ios-10.0
-      <<: *_ios
+      os: osx
+      osx_image: xcode9
     - env: PLATFORM=ios-11.3
-      <<: *_ios
+      os: osx
+      osx_image: $XCODE_VERSION
     - env: PLATFORM=ios-12.0
-      <<: *_ios
-
+      os: osx
+      osx_image: $XCODE_VERSION
+      
     - env: PLATFORM=android-4.4
       <<: *_android
     - env: PLATFORM=android-5.1
