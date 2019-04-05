@@ -13,15 +13,20 @@ env:
 language: node_js
 node_js: 6
 
-android:
-  components:
-    - tools
-    - build-tools-$ANDROID_BUILD_TOOLS_VERSION
-    - android-$ANDROID_API_LEVEL
-  licenses:
-    - 'android-sdk-preview-license-.+'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+# anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
+_android: &_android
+  language: android
+  os: linux
+  jdk: oraclejdk8
+  android:
+    components:
+      - tools
+      - build-tools-$ANDROID_BUILD_TOOLS_VERSION
+      - android-$ANDROID_API_LEVEL
+    licenses:
+      - 'android-sdk-preview-license-.+'
+      - 'android-sdk-license-.+'
+      - 'google-gdk-license-.+'
 
 matrix:
   include:
@@ -34,33 +39,19 @@ matrix:
       os: osx
       osx_image: xcode9
     - env: PLATFORM=android-4.4
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-5.1
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-6.0
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-7.0
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-7.1
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-8.0
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
     - env: PLATFORM=android-8.1
-      os: linux
-      language: android
-      jdk: oraclejdk8
+      <<: *_android
 
 before_install:
   # `language: android` has no Node.js installed, therefore we need to install it manually
