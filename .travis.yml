@@ -11,13 +11,14 @@ env:
     - ANDROID_BUILD_TOOLS_VERSION=28.0.3
 
 language: node_js
-node_js: 6
+node_js: 
+  - "6"
 
 # anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
 
 _ios: &_ios
   os: osx
-  osx_image: xcode10.1
+  osx_image: xcode10.2
 
 _android: &_android
   language: android
@@ -52,7 +53,7 @@ matrix:
       <<: *_ios
     - env: PLATFORM=ios-12.0
       <<: *_ios
-      
+
     - env: PLATFORM=android-4.4
       <<: *_android
     - env: PLATFORM=android-5.1

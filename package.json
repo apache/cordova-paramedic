@@ -50,7 +50,7 @@
     "path-extra": "^3.0.0",
     "q": "^1.4.1",
     "randomstring": "^1.1.5",
-    "sauce-connect-launcher": "^1.2.2",
+    "sauce-connect-launcher": "^1.2.5",
     "saucelabs": "^1.2.0",
     "shelljs": "~0.3.0",
     "socket.io": "^1.4.5",
@@ -58,7 +58,7 @@
     "tmp": "0.0.25",
     "tree-kill": "^1.1.0",
     "unorm": "^1.4.1",
-    "wd": "^1.2.0"
+    "wd": "^1.11.1"
   },
   "devDependencies": {
     "jshint": "^2.6.0"
