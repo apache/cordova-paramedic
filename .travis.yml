@@ -15,6 +15,10 @@ language: node_js
 node_js: 6
 
 # anchor/alias: https://medium.com/@tommyvn/travis-yml-dry-with-anchors-8b6a3ac1b027
+_ios: &_ios
+  os: osx
+  osx_image: $XCODE_VERSION
+
 _android: &_android
   language: android
   os: linux
@@ -33,8 +37,7 @@ matrix:
   include:
     # one local test, without saucelabs
     - env: PLATFORM=local
-      os: osx
-      osx_image: xcode9
+      <<: *_ios
 
     # many tests with saucelabs
 
@@ -44,14 +47,11 @@ matrix:
     - env: PLATFORM=browser-edge
 
     - env: PLATFORM=ios-10.0
-      os: osx
-      osx_image: xcode9
+      <<: *_ios
     - env: PLATFORM=ios-11.3
-      os: osx
-      osx_image: $XCODE_VERSION
+      <<: *_ios
     - env: PLATFORM=ios-12.0
-      os: osx
-      osx_image: $XCODE_VERSION
+      <<: *_ios
       
     - env: PLATFORM=android-4.4
       <<: *_android
