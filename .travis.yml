@@ -40,6 +40,7 @@ matrix:
     # one local test, without saucelabs
     - env: PLATFORM=local
       <<: *_ios
+      osx_image: xcode9
 
     # many tests with saucelabs
 
