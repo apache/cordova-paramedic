@@ -15,10 +15,10 @@
     "url": "git://github.com/apache/cordova-paramedic.git"
   },
   "scripts": {
-    "test": "npm run jshint & npm run test-local && npm run test-saucelabs",
-    "test-on-windows": "npm run jshint & npm run test-local-on-windows && npm run test-saucelabs-on-windows",
-    "jshint": "node node_modules/jshint/bin/jshint lib/",
-    "test-travis": "npm run jshint & npm run test-ios",
+    "test": "npm run eslint & npm run test-local && npm run test-saucelabs",
+    "test-on-windows": "npm run eslint & npm run test-local-on-windows && npm run test-saucelabs-on-windows",
+    "eslint": "eslint lib",
+    "test-travis": "npm run eslint & npm run test-ios",
     "test-appveyor": "npm run test-browser",
     "test-local": "npm run test-browser && npm run test-android && npm run test-ios",
     "test-local-on-windows": "npm run test-browser && npm run test-android",
@@ -61,6 +61,12 @@
     "wd": "^1.11.1"
   },
   "devDependencies": {
-    "jshint": "^2.6.0"
+    "eslint": "^5.16.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0"
   }
 }
