@@ -1,0 +1,8 @@
+{
+    "platform": "ios",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "verbose": true,
+    "saucePlatformVersion": "12.2",
+    "sauceAppiumVersion": "1.12.1"
+}

@@ -2,7 +2,7 @@
     "platform": "android",
     "action": "run",
     "cleanUpAfterRun": true,
-    "saucePlatformVersion": "7.0",
+    "saucePlatformVersion": "8.0",
     "sauceDeviceName": "Android GoogleAPI Emulator",
     "verbose": true
 }
