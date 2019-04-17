@@ -237,7 +237,7 @@ cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 0
 For iOS: A string that is used to pick the device (from the `cordova run --list --emulator` output) the tests should be run on.
 
 ```
-cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "^iPhone-5"
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPhone-8"
 ```
 
 
