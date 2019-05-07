@@ -82,5 +82,9 @@ before_install:
 install:
   - npm install
 
+before_script:
+  - PARAMEDIC_BUILDNAME=travis-plugin-splashscreen-$TRAVIS_JOB_NUMBER
+  
 script:
-  - node main.js --config ./pr/$PLATFORM --plugin ./spec/testable-plugin/ --buildName travis-paramedic-$TRAVIS_JOB_NUMBER;
+  - npm run eslint
+  - node main.js --config ./pr/$PLATFORM --plugin ./spec/testable-plugin/ --buildName $PARAMEDIC_BUILDNAME
