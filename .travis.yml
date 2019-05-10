@@ -38,7 +38,7 @@ _android: &_android
 matrix:
   include:
     # additional tests via package.json
-    - env: ADDITIONAL_TESTS=./spec/testable-plugin/foo
+    - env: ADDITIONAL_TESTS=./spec/testable-plugin/tests/foo
       <<: *_ios
     
     # local tests, without saucelabs
