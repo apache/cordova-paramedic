@@ -72,6 +72,17 @@ describe('Testable Plugin UI Automation Tests', function () {
                 var promiseId = getNextPromiseId();
                 return driver
                     .context(webviewContext)
+                    .execute(function (pID) {
+                        navigator._appiumPromises[pID] = Q.defer();
+                        return Q.fcall(function () {
+                            return 'success';
+                        })
+                        .then(function (result) {
+                            navigator._appiumPromises[pID].resolve(result);
+                        }, function (err) {
+                            navigator._appiumPromises[pID].reject(err);
+                        });
+                    }, [promiseId])
                     .executeAsync(function (pID, cb) {
                         navigator._appiumPromises[pID].promise
                             .then(function (result) {
