@@ -1,10 +1,10 @@
 {
-  "name": "cordova-plugin-testable-test-foo",
+  "name": "testable-plugin-tests-foo",
   "version": "1.0.0",
-  "description": "Additional Tests for Testable Plugin",
-  "author": "",
-  "license": "",
+  "description": "Additional tests for testable plugin",
   "scripts": {
     "test": "echo \"Here could be additional tests.\""
   },
+  "author": ""
+  "license": ""
 }
