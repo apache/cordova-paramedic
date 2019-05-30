@@ -72,6 +72,8 @@ matrix:
       <<: *_android
     - env: PLATFORM=android-8.1
       <<: *_android
+    - env: PLATFORM=android-9.0
+      <<: *_android
 
 before_install:
   # manually install Node for `language: android`
