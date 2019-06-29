@@ -1,6 +1,6 @@
 {
   "name": "cordova-paramedic",
-  "version": "0.6.0-dev",
+  "version": "0.7.0-dev",
   "license": "Apache-2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
