@@ -1,14 +1,35 @@
 # appveyor file
 # http://www.appveyor.com/docs/appveyor-yml
 
+shallow_clone: true
+
+init:
+  - git config --global core.autocrlf true
+
+image:
+  - Visual Studio 2017
+
+environment:
+  PLATFORM: windows-10-store
+  JUST_BUILD: --justBuild # why?
+  matrix:
+    - nodejs_version: "12"
+
+platform:
+  - x86
+  - x64
+
 install:
-  - npm install cordova
+  - ps: Install-Product node $env:nodejs_version
+  - node --version
+  - npm --version
+#  - npm install -g cordova-paramedic@https://github.com/apache/cordova-paramedic.git # this should only be done when used on plugin repo - if/else?
   - npm install
   - npm link
+  - npm install -g cordova
 
 build: off
 
 test_script:
-  - node --version
-  - npm --version
-  - npm run test-appveyor
+  - cordova-paramedic --config pr\%PLATFORM% --plugin "./spec/testable-plugin/" %JUST_BUILD%
+#  - cordova-paramedic --config pr\%PLATFORM% --plugin . %JUST_BUILD% # this only makes sense on plugin repo
