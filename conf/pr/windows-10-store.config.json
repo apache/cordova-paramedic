@@ -1,5 +1,5 @@
 {
-    "platform": "windows",
+    "platform": "windows@github:apache/cordova-windows",
     "action": "run",
     "args": " -- --appx=uap --archs=x64",
     "cleanUpAfterRun": true,
