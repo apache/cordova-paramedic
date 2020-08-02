@@ -2,6 +2,6 @@
     "platform": "ios",
     "action": "run",
     "cleanUpAfterRun": true,
-    "target": "iPhone-XR",
+    "target": "iPhone-6s-Plus, 10.0",
     "verbose": true
 }
