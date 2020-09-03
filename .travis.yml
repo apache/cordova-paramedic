@@ -74,6 +74,8 @@ matrix:
       <<: *_ios
     - env: PLATFORM=ios-12.2
       <<: *_ios
+    - env: PLATFORM=ios-13.7
+      <<: *_ios
 
     - env: PLATFORM=android-5.1
       <<: *_android
