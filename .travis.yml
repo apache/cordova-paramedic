@@ -61,7 +61,7 @@ matrix:
       <<: *_ios
     - env: PLATFORM=local/ios-10.0
       <<: *_ios
-    - env: PLATFORM=local/ios-13.7
+    - env: PLATFORM=local/ios-13.6
       <<: *_ios
 
     # many tests with saucelabs
