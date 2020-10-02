@@ -11,6 +11,7 @@
     "node": ">=6"
   },
   "repository": "github:apache/cordova-paramedic",
+  "bugs": "https://github.com/apache/cordova-paramedic/issues",
   "scripts": {
     "test": "npm run eslint & npm run test-local && npm run test-saucelabs",
     "test-on-windows": "npm run eslint & npm run test-local-on-windows && npm run test-saucelabs-on-windows",
