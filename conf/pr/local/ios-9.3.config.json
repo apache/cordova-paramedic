@@ -1,8 +1,0 @@
-{
-    "platform": "ios@latest",
-    "args": "--buildFlag='-UseModernBuildSystem=0'",
-    "action": "run",
-    "cleanUpAfterRun": true,
-    "target": "iPhone-SE, 9.3",
-    "verbose": true
-}
