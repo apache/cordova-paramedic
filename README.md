@@ -112,7 +112,7 @@ A full Paramedic run will:
         1. Skip if no Appium tests were found <!-- 7-427 -->  
         1. Prepare App in AppiumRunner <!-- 7-433 -->
             1. Remove server address from app
-            2. Reconfigure app (modify preferences + CSP, add plugin) <!-- 367, 375, 385 -- >
+            2. Reconfigure app (modify preferences + CSP, add plugin) <!-- 367, 375, 385 -->
             3. Build app
         1. (sauce) Package and Upload the App to Sauce Labs <!-- 7-436 -->
         1. Run tests via AppiumRunner <!-- 7-442 -->
@@ -175,7 +175,7 @@ cordova-paramedic --config conf/pr/android-7.0 --plugin ./
 
 ## Command Line Interface
 
-### What to build and test
+### What and how to build and test
 
 #### `--platform` (required)
 
@@ -217,12 +217,32 @@ A path to Cordova CLI. Useful when you're testing against locally installed Cord
 cordova-paramedic --platform android --plugin cordova-plugin-device --cli ./cordova-cli/bin/cordova
 ```
 
+#### `--action` (optional)
+
+TODO
+
 #### `--justbuild` (optional)
 
 Just builds the project, without running the tests.
 
 ```
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuild
+```
+
+#### `--skipMainTests` (optional)
+
+TODO
+
+#### `--skipAppiumTests` (optional)
+
+TODO
+
+#### `--args` (optional)
+
+Add additional parameters to the `cordova build` and `cordova run` commands.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --args=--buildFlag='-UseModernBuildSystem=0'
 ```
 
 ### Emulator/Device to use for tests
@@ -312,14 +332,6 @@ iOS only parameter. The path to the sample TCC DB file, with permissions, to be 
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
-#### `--args` (optional)
-
-Add additional parameters to the `cordova build` and `cordova run` commands.
-
-```
-cordova-paramedic --platform ios --plugin cordova-plugin-contacts --args=--buildFlag='-UseModernBuildSystem=0'
-```
-
 ### Sauce Labs
 
 #### `--shouldUseSauce` (optional)
@@ -357,6 +369,26 @@ Appium version to use when running on Sauce Labs. For example, "1.5.3".
 ```
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSauce --sauceUser ***** --sauceKey ***** --sauceDeviceName 'iPad Simulator" --saucePlatformVersion 9.1 --appiumVersion 1.5.2
 ```
+
+#### `--sauceTunnelId`(optional)
+
+Tunnel identifier to use. Only usable if you have Sauce Connect up
+
+TODO
+
+### Others
+
+#### `--ci` (optional)
+
+Skip tests that require user interaction
+
+TODO
+
+#### `--fileTransferServer` (optional)
+
+(cordova-plugin-file-transfer only) A server address tests should connect to
+
+TODO
 
 ## Configuration file
 
