@@ -4,6 +4,6 @@
     "cleanUpAfterRun": true,
     "shouldUseSauce": true,
     "sauceDeviceName": "chrome",
-    "saucePlatformVersion": "59.0",
+    "saucePlatformVersion": "85.0",
     "verbose": true
 }
