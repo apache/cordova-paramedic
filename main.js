@@ -66,6 +66,7 @@ var USAGE           = "Error missing args. \n" +
     "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
+    "--deploymentIosTarget: (optional) Adds a minimum ios deployment target on config.xml\n" +
     "";
 
 var argv = parseArgs(process.argv.slice(2), {
@@ -179,6 +180,10 @@ if (argv.version) {
 
     if (argv.args) {
         paramedicConfig.setArgs(argv.args);
+    }
+
+    if (argv.deploymentIosTarget) {
+        paramedicConfig.setDeploymentIosTarget(argv.deploymentIosTarget);
     }
 
     paramedic.run(paramedicConfig)

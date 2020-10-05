@@ -241,6 +241,14 @@ For iOS: A string that is used to pick the device (from the `cordova run --list 
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPhone-8"
 ```
 
+#### `--deploymentIosTarget` (optional)
+
+For iOS: if the plugin requires a minimum version of iOS. This parameter is going to add `<preference name="deployment-target" value="${deploymentIosTarget}" />`on the `config.xml`.
+
+```
+cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPhone-8" --deploymentIosTarget="10.0"
+```
+
 
 ### Test Result Server
 
