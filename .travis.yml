@@ -94,6 +94,9 @@ matrix:
     - env: PLATFORM=android-10.0
       <<: *_android
 
+    - env: PLATFORM=android-9.0-androidx
+      <<: *_android
+
 before_install:
   # manually install Node for `language: android`
   - if [[ "$PLATFORM" =~ android ]]; then nvm install $TRAVIS_NODE_VERSION; fi
