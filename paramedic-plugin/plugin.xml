@@ -34,4 +34,11 @@
         <runs/>
     </js-module>
 
+    <platform name="android">
+      <config-file target="config.xml" parent="/*">
+        <!-- the logging server is http so force the webview to also be http -->
+        <preference name="scheme" value="http" />
+      </config-file>
+    </platform>
+
 </plugin>
