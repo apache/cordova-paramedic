@@ -34,11 +34,26 @@
         <runs/>
     </js-module>
 
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <preference name="scheme" value="app" />
+            <preference name="hostname" value="localhost" />
+        </config-file>
+    </platform>
+
     <platform name="android">
       <config-file target="config.xml" parent="/*">
+        <!-- <preference name="AndroidInsecureFileModeEnabled" value="true" /> -->
         <!-- the logging server is http so force the webview to also be http -->
         <preference name="scheme" value="http" />
+        <!-- <preference name="localhost" value="apptest.cordova.apache.org" /> -->
       </config-file>
+
+      <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+        <!-- Cleartext Traffic should be avoided. Currently the way paramedic proxy the results, cleartext is needed, even when the scheme is set to http. -->
+        <application android:usesCleartextTraffic="true" />
+      </edit-config>
     </platform>
 
 </plugin>
