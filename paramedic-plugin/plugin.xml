@@ -19,7 +19,8 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="cordova-plugin-paramedic"
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      id="cordova-plugin-paramedic"
       version="1.2.1-dev">
 
     <name>Paramedic</name>
@@ -33,7 +34,6 @@
     <js-module src="paramedic.js" name="paramedic">
         <runs/>
     </js-module>
-
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -55,5 +55,4 @@
         <application android:usesCleartextTraffic="true" />
       </edit-config>
     </platform>
-
 </plugin>
