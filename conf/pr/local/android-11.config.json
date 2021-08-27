@@ -2,5 +2,6 @@
     "platform": "android@nightly",
     "action": "run",
     "cleanUpAfterRun": true,
-    "verbose": true
+    "verbose": true,
+    "skipAppiumTests": true
 }
