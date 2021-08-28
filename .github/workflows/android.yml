@@ -52,7 +52,7 @@ jobs:
           path: |
             ~/.android/avd/*
             ~/.android/adb*
-          key: api-level-${{ env.android-api }}
+          key: api-level-${{ env.android-api }}-${{ hashFiles('~/.android/avd/*') }}
 
       - name: Run Environment Information
         run: |
