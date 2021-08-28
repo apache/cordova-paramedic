@@ -46,14 +46,6 @@ jobs:
           distribution: ${{ env.java-distro }}
           java-version: ${{ env.java-version }}
 
-      - uses: actions/cache@v2
-        id: avd-cache
-        with:
-          path: |
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: api-level-${{ env.android-api }}-${{ hashFiles('~/.android/avd/*') }}
-
       - name: Run Environment Information
         run: |
           node --version
@@ -68,7 +60,6 @@ jobs:
           npm ci
 
       - uses: reactivecircus/android-emulator-runner@v2
-        if: steps.avd-cache.outputs.cache-hit != 'true'
         with:
           api-level: ${{ env.android-api }}
           target: google_apis
@@ -76,7 +67,7 @@ jobs:
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          script: echo "Generate & Cache AVD Snapshot"
+          script: echo "Pregenerate the AVD before running Paramedic"
 
       - name: Run paramedic tests
         uses: reactivecircus/android-emulator-runner@v2
