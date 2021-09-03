@@ -21,7 +21,7 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: iOS ${{ matrix.versions.ios }}
+    name: iOS ${{ matrix.versions.ios }} Test
     runs-on: macos-latest
 
     # hoist configurations to top that are expected to be updated
