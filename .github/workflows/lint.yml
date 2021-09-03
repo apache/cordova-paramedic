@@ -15,24 +15,22 @@
 # specific language governing permissions and limitations
 # under the License.
 
-name: Node Test
+name: Lint Test
 
 on: [push, pull_request]
 
 jobs:
   test:
-    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        node-version: [12, 14, 16]
+    name: Lint Test
+    runs-on: ubuntu-latest
+    env:
+      node-version: 16
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.node-version }}
 
       - name: Run Environment Information
         run: |
@@ -44,6 +42,6 @@ jobs:
           npm ci
 
       # This should call `npm t` but it calls paramedic platform tests. Also we dont have actual node tests at this time.
-      - name: Run node test
+      - name: Run lint test
         run: |
           npm run lint
