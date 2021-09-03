@@ -23,31 +23,44 @@ jobs:
   test:
     name: iOS ${{ matrix.versions.ios }}
     runs-on: macos-latest
+
+    # hoist configurations to top that are expected to be updated
+    env:
+      node-version: 16
+      platform: 'ios'
+
+    # configurations for each testing strategy (test matrix)
     strategy:
       matrix:
         versions:
-          - ios: 13.6
-            xcode: 11.6
+          - ios: 12
+            xcode: 11.7
+
+          - ios: 13
+            xcode: 11.7
+
+          - ios: 14
+            xcode: 12.5.1
 
     steps:
       - uses: actions/checkout@v2
-
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node-version }}
       - uses: maxim-lobanov/setup-xcode@v1.1
         with:
           xcode-version: ${{ matrix.versions.xcode }}
 
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Environment Information
+      - name: Run Environment Information
         run: |
           node --version
           npm --version
+          xcodebuild -version
 
-      - name: npm install and test
+      - name: Run npm install
         run: |
           npm i -g cordova ios-deploy
           npm ci
-          node main.js --config ./pr/local/ios-13.6.config.json  --plugin ./spec/testable-plugin/
+
+      - name: Run paramedic tests
+        run: node main.js --config ./pr/local/${{ env.platform }}-${{ matrix.versions.ios }}.x.config.json  --plugin ./spec/testable-plugin/

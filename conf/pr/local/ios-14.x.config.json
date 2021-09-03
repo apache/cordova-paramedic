@@ -1,0 +1,7 @@
+{
+    "platform": "ios@latest",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "target": "iPhone-11, 14.7.1",
+    "verbose": true
+}
