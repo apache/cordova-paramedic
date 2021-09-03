@@ -21,35 +21,29 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: iOS ${{ matrix.versions.ios }} Test
+    name: iOS ${{ matrix.ios-version }} Test
     runs-on: macos-latest
 
     # hoist configurations to top that are expected to be updated
     env:
+      # > Starting April 26, 2021, all iOS and iPadOS apps submitted to the App Store must be built with Xcode 12 and the iOS 14 SDK.
+      # Because of Apple's requirement, listed above, We will only be using the latest Xcode release for testing.
+      xcode-version: latest-stable
       node-version: 16
       platform: 'ios'
 
-    # configurations for each testing strategy (test matrix)
     strategy:
       matrix:
-        versions:
-          - ios: 12
-            xcode: 11.7
-
-          - ios: 13
-            xcode: 11.7
-
-          - ios: 14
-            xcode: 12.5.1
+        ios-version: [12.x, 13.x, 14.x]
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.node-version }}
-      - uses: maxim-lobanov/setup-xcode@v1.1
+      - uses: maxim-lobanov/setup-xcode@881be567d30efed8fb3f12b5099d68c3fb72aa3d
         with:
-          xcode-version: ${{ matrix.versions.xcode }}
+          xcode-version: ${{ env.xcode-version }}
 
       - name: Run Environment Information
         run: |
@@ -63,4 +57,4 @@ jobs:
           npm ci
 
       - name: Run paramedic tests
-        run: node main.js --config ./pr/local/${{ env.platform }}-${{ matrix.versions.ios }}.x.config.json  --plugin ./spec/testable-plugin/
+        run: node main.js --config ./pr/local/${{ env.platform }}-${{ matrix.ios-version }}.config.json  --plugin ./spec/testable-plugin/
