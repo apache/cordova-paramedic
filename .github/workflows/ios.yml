@@ -26,14 +26,15 @@ jobs:
 
     # hoist configurations to top that are expected to be updated
     env:
+      # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
+      test_plugin_path: ${{ github.event.pull_request.head.repo.full_name == 'apache/cordova-paramedic' && './spec/testable-plugin/' || './' }}
+
       node-version: 16
 
       # > Starting April 26, 2021, all iOS and iPadOS apps submitted to the App Store must be built with Xcode 12 and the iOS 14 SDK.
       # Because of Apple's requirement, listed above, We will only be using the latest Xcode release for testing.
       # To customize these options, add "xcode-version" to the strategy matrix with its overriding value.
       default_xcode-version: latest-stable
-
-      test_plugin_path: ./spec/testable-plugin/
 
     strategy:
       matrix:
