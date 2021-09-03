@@ -1,10 +1,10 @@
-> Paramedic • _noun_ provides advanced levels of care at the point of illness or injury, including out of hospital treatment, and diagnostic services
-
 # Cordova Paramedic (Test Automation)
 
 [![Android Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml)
 [![iOS Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml)
 [![Chrome Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml)
+
+> Paramedic • _noun_ provides advanced levels of care at the point of illness or injury, including out of hospital treatment, and diagnostic services
 
 `cordova-paramedic` is a tool to automate execution of Cordova plugins tests (via [`cordova-plugin-test-framework`](https://github.com/apache/cordova-plugin-test-framework)).
 
@@ -20,26 +20,26 @@ Cordova Paramedic is currently used to automatically run all plugin tests on CI.
 - [What does it do?](#what-does-it-do)
 - [Installation](#installation)
 - [Usage](#usage)
-  * [Common usages](#common-usages)
+  - [Common usages](#common-usages)
 - [Command Line Interface](#command-line-interface)
-  * [What to build and test](#what-to-build-and-test)
-  * [Emulator/Device to use for tests](#emulatordevice-to-use-for-tests)
-  * [Test Result Server](#test-result-server)
-  * [Test Configuration](#test-configuration)
-  * [Sauce Labs](#sauce-labs)
+  - [What to build and test](#what-to-build-and-test)
+  - [Emulator/Device to use for tests](#emulatordevice-to-use-for-tests)
+  - [Test Result Server](#test-result-server)
+  - [Test Configuration](#test-configuration)
+  - [Sauce Labs](#sauce-labs)
 - [Configuration file](#configuration-file)
 - [API Interface](#api-interface)
 - [Quirks](#quirks)
-  * [Windows](#windows)
+  - [Windows](#windows)
 
 <!--<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>-->
 
 ## Supported Cordova Platforms
 
 - Android
+- Browser
 - iOS
 - Windows
-- Browser
 
 ## What does it do?
 
@@ -136,23 +136,44 @@ A full Paramedic run will:
 
 ## Installation
 
-```
+**Using npmjs registry version:**
+
+```shell
 npm install -g cordova-paramedic
-
-# or
-
-git clone https://github.com/apache/cordova-paramedic
-# when cloning, you have to run `npm link` inside the checkout
-# or replace all occurences of `cordova-paramedic` in commands with `cordova-paramedic/main.js`
-# or `node cordova-paramedic/main.js` (on Windows)
 ```
+
+**Using GitHub version:**
+
+```shell
+npm install -g github:apache/cordova-paramedic
+```
+
+or
+
+```shell
+git clone https://github.com/apache/cordova-paramedic
+```
+
+If cloning from GitHub, you will need to run `npm link` inside the checkout repository.
+
+Alternativly, replace all occurences of `cordova-paramedic` with the command:
+
+* `cordova-paramedic/main.js` for Linux or macOS
+* `node cordova-paramedic/main.js` for Windows
 
 ## Usage
 
-Paramedic parameters can be passed via command line arguments or via separate configuration file:
+Paramedic parameters can be passed via command line arguments or separate configuration file:
 
-```
+**By Command Line Arguments:**
+
+```shell
 cordova-paramedic --platform PLATFORM --plugin PATH <other parameters>
+```
+
+**By Configuration File:**
+
+```shell
 cordova-paramedic --config ./sample-config/.paramedic.config.js
 ```
 
@@ -160,17 +181,28 @@ cordova-paramedic --config ./sample-config/.paramedic.config.js
 
 Some common use cases of Paramedic:
 
-```
-# Run without any parameters to get a list of supported parameters
+**Run without any parameters to get a list of supported parameters:**
+
+```shell
 cordova-paramedic
+```
 
-# Test your current plugin on an Android emulator
+**Test your current plugin on an Android emulator:**
+
+```shell
 cordova-paramedic --platform android --plugin ./
+```
 
-# Test your current plugin on a specific Android device (ID via `adb devices -l`)
+**Test your current plugin on a specific Android device (ID via `adb devices -l`):**
+
+```shell
+
 cordova-paramedic --platform android --plugin ./ --target 02e7f7e9215da7f8 --useTunnel
+```
 
-# Test your current plugin on an Android 7.0 emulator on Sauce Labs
+**Test your current plugin on an Android 7.0 emulator on Sauce Labs:**
+
+```shell
 cordova-paramedic --config conf/pr/android-7.0 --plugin ./
 ```
 
@@ -182,7 +214,7 @@ cordova-paramedic --config conf/pr/android-7.0 --plugin ./
 
 Specifies target Cordova platform (could refer to local directory, npm or git)
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser
 cordova-paramedic --platform ios@4.0 --plugin cordova-plugin-inappbrowser
 cordova-paramedic --platform ios@../cordova-ios --plugin cordova-plugin-inappbrowser
@@ -194,7 +226,7 @@ cordova-paramedic --platform ios@https://github.com/apache/cordova-ios.git#4.1.0
 Specifies test plugin, you may specify multiple `--plugin` flags and they will all be installed and tested together. You can refer to absolute path, npm registry or git repo.
 If the plugin requires variables to install, you can specify them along with its name.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser
 cordova-paramedic --platform ios --plugin 'azure-mobile-engagement-cordova --variable AZME_IOS_CONNECTION_STRING=Endpoint=0;AppId=0;SdkKey=0'
 cordova-paramedic --platform ios --plugin https://github.com/apache/cordova-plugin-inappbrowser
@@ -206,7 +238,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --plugin c
 
 Verbose mode. Display more information output
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --verbose
 ```
 
@@ -214,7 +246,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --verbose
 
 A path to Cordova CLI. Useful when you're testing against locally installed Cordova version.
 
-```
+```shell
 cordova-paramedic --platform android --plugin cordova-plugin-device --cli ./cordova-cli/bin/cordova
 ```
 
@@ -222,7 +254,7 @@ cordova-paramedic --platform android --plugin cordova-plugin-device --cli ./cord
 
 Just builds the project, without running the tests.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuild
 ```
 
@@ -232,16 +264,15 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuil
 
 For Android: The device ID (from `adb devices -l`) of a device the tests should be run on.  
 
-```
+```shell
 cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 02e7f7e9215da7f8
 ```
 
 For iOS: A string that is used to pick the device (from the `cordova run --list --emulator` output) the tests should be run on.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPhone-8"
 ```
-
 
 ### Test Result Server
 
@@ -250,7 +281,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPho
 Use a tunnel (via [`localtunnel`](https://www.npmjs.com/package/localtunnel)) instead of local address (default is false).
 Useful when testing on real devices and don't want to specify external IP address (see `--externalServerUrl` below) of paramedic server.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --useTunnel
 ```
 
@@ -258,7 +289,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --useTunne
 
 Useful when testing on real device (`--device` parameter) so that tests results from device could be posted back to paramedic server.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --externalServerUrl http://10.0.8.254
 ```
 
@@ -266,7 +297,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --external
 
 Port to use for posting results from emulator back to paramedic server (default is from `8008`). You can also specify a range using `--startport` and `endport` and paramedic will select the first available.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --port 8010
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --startport 8000 endport 8020
 ```
@@ -277,7 +308,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --startpor
 
 Time in millisecs to wait for tests to pass|fail (defaults to 10 minutes).
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --timeout 30000
 ```
 
@@ -285,7 +316,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --timeout 
 
 Directory location to store test results in junit format and the device logs
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --outputDir /Users/sampleuser/testresults
 ```
 
@@ -293,7 +324,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --outputDi
 
 Flag to indicate the sample application folder must be deleted.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --cleanUpAfterRun
 ```
 
@@ -301,7 +332,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --cleanUpA
 
 Windows only parameter to indicate the duration for which the device logs to be fetched.
 
-```
+```shell
 cordova-paramedic --platform windows --plugin cordova-plugin-inappbrowser --logMins 15
 ```
 
@@ -309,7 +340,7 @@ cordova-paramedic --platform windows --plugin cordova-plugin-inappbrowser --logM
 
 iOS only parameter. The path to the sample TCC DB file, with permissions, to be copied to the simulator.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tcc.db
 ```
 
@@ -317,7 +348,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --tccDbPath tc
 
 Add additional parameters to the `cordova build` and `cordova run` commands.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --args=--buildFlag='-UseModernBuildSystem=0'
 ```
 
@@ -335,7 +366,7 @@ Sauce Labs username. Alternatively set via the `SAUCE_USERNAME` environment vari
 
 Sauce Labs access key. Alternatively set via the `SAUCE_ACCESS_KEY` environment variable.
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSauce --sauceUser ***** --sauceKey ***** --buildName "paramedic-test-01"
 ```
 
@@ -355,7 +386,7 @@ Platform version of the Sauce Labs emulator OS, or version of the browser (if te
 
 Appium version to use when running on Sauce Labs. For example, "1.5.3".
 
-```
+```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSauce --sauceUser ***** --sauceKey ***** --sauceDeviceName 'iPad Simulator" --saucePlatformVersion 9.1 --appiumVersion 1.5.2
 ```
 
@@ -363,14 +394,14 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --shouldUseSau
 
 Configuration file is used when no parameters are passed to `cordova-paramedic` call or explicitly specified via `--config` parameter:
 
-```
+```shell
 cordova-paramedic           <- paramedic will attempt to find .paramedic.config.js in working directory
 cordova-paramedic --config ./sample-config/.paramedic.config.js
 ```
 
 Example configuration file is showed below.
 
-```
+```js
 module.exports = {
     // "externalServerUrl": "http://10.0.8.254",
     "useTunnel": true,
@@ -399,4 +430,3 @@ paramedic.run(config);
 ### Windows
 
 For Paramedic to work correctly for Windows apps you'll need to allow the loopback for "HelloCordova" app using [Windows Loopback Exemption Manager](https://github.com/tiagonmas/Windows-Loopback-Exemption-Manager) ([download](https://github.com/piksel/Windows-Loopback-Exemption-Manager/releases/tag/v1.0.0.1)).
-
