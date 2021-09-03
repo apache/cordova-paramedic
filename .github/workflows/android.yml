@@ -21,18 +21,54 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Android Latest Test
+    name: Android Test
     runs-on: macos-latest
 
     # hoist configurations to top that are expected to be updated
     env:
       node-version: 16
-      java-version: 11
       java-distro: 'adopt'
-      android-api: 30
+      platform: 'android'
 
-      # E.g. android-11 from the file: ./pr/local/android-11.config.json
-      target-test: android-11
+    # configurations for each testing strategy (test matrix)
+    strategy:
+      matrix:
+        versions:
+          - android: 5.1
+            android-api: 22
+            java-version: 8
+
+          - android: 6
+            android-api: 23
+            java-version: 8
+
+          - android: 7
+            android-api: 24
+            java-version: 8
+
+          - android: 7.1
+            android-api: 25
+            java-version: 8
+
+          - android: 8
+            android-api: 26
+            java-version: 8
+
+          - android: 8.1
+            android-api: 27
+            java-version: 8
+
+          - android: 9
+            android-api: 28
+            java-version: 8
+
+          - android: 10
+            android-api: 29
+            java-version: 8
+
+          - android: 11
+            android-api: 30
+            java-version: 11
 
     timeout-minutes: 60
 
@@ -44,7 +80,7 @@ jobs:
       - uses: actions/setup-java@v2
         with:
           distribution: ${{ env.java-distro }}
-          java-version: ${{ env.java-version }}
+          java-version: ${{ matrix.versions.java-version }}
 
       - name: Run Environment Information
         run: |
@@ -61,7 +97,7 @@ jobs:
 
       - uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: ${{ env.android-api }}
+          api-level: ${{ matrix.versions.android-api }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false
@@ -72,10 +108,10 @@ jobs:
       - name: Run paramedic tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: ${{ env.android-api }}
+          api-level: ${{ matrix.versions.android-api }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          script: node main.js --config ./pr/local/${{ env.target-test }}.config.json  --plugin ./spec/testable-plugin/
+          script: node main.js --config ./pr/local/${{ env.platform }}-${{ matrix.versions.android }}.config.json  --plugin ./spec/testable-plugin/
