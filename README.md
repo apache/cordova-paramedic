@@ -2,6 +2,10 @@
 
 # Cordova Paramedic (Test Automation)
 
+[![Android Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml)
+[![iOS Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml)
+[![Chrome Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml)
+
 `cordova-paramedic` is a tool to automate execution of Cordova plugins tests (via [`cordova-plugin-test-framework`](https://github.com/apache/cordova-plugin-test-framework)).
 
 You can use Paramedic to build and run a Cordova app with plugin tests, run these tests on local and remote emulators on [Sauce Labs](https://saucelabs.com/), and report the results. It can be used on a local or Continuous Integration environment.
