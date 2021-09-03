@@ -102,6 +102,10 @@ jobs:
           npm i -g cordova@latest
           npm ci
 
+      - name: Run paramedic install
+        if: ${{ endswith(env.repo, '/cordova-paramedic')　!= true }}
+        run: npm i -g github:apache/cordova-paramedic
+
       - uses: reactivecircus/android-emulator-runner@5de26e4bd23bf523e8a4b7f077df8bfb8e52b50e
         env:
           system-image-arch: ${{ matrix.versions.system-image-arch == '' && env.default_system-image-arch || matrix.versions.system-image-arch }}
@@ -123,6 +127,7 @@ jobs:
           test_config: 'android-${{ matrix.versions.android }}.config.json'
           # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
           test_plugin_path: ${{ endswith(env.repo, '/cordova-paramedic') && './spec/testable-plugin/' || './' }}
+          paramedic: ${{ endswith(env.repo, '/cordova-paramedic') && 'node main.js' || 'cordova-paramedic' }}
         with:
           api-level: ${{ matrix.versions.android-api }}
           target: ${{ env.system-image-target }}
@@ -130,4 +135,4 @@ jobs:
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          script: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
+          script: ${{ env.paramedic }} --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}

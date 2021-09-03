@@ -65,9 +65,14 @@ jobs:
           npm i -g cordova@latest ios-deploy@latest
           npm ci
 
+      - name: Run paramedic install
+        if: ${{ endswith(env.repo, '/cordova-paramedic')　!= true }}
+        run: npm i -g github:apache/cordova-paramedic
+
       - name: Run paramedic tests
         env:
           test_config: 'ios-${{ matrix.versions.ios-version }}.config.json'
           # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
           test_plugin_path: ${{ endswith(env.repo, '/cordova-paramedic') && './spec/testable-plugin/' || './' }}
-        run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
+          paramedic: ${{ endswith(env.repo, '/cordova-paramedic') && 'node main.js' || 'cordova-paramedic' }}
+        run: ${{ env.paramedic }} --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
