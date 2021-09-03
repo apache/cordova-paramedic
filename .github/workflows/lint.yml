@@ -17,7 +17,17 @@
 
 name: Lint Test
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**.js'
+      - '.eslint*'
+      - '.github/workflow/lint.yml'
+  pull_request:
+    paths:
+      - '**.js'
+      - '.eslint*'
+      - '.github/workflow/lint.yml'
 
 jobs:
   test:
