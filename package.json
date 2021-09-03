@@ -8,7 +8,7 @@
     "cordova-paramedic": "./main.js"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=12"
   },
   "repository": "github:apache/cordova-paramedic",
   "bugs": "https://github.com/apache/cordova-paramedic/issues",
