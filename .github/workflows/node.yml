@@ -21,10 +21,11 @@ on: [push, pull_request]
 
 jobs:
   test:
-    name: Node ${{ matrix.node-version }} on ${{  }}
-    runs-on: [macos-latest, ubuntu-latest, windows-latest]
+    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
         node-version: [12, 14, 16]
 
     steps:
