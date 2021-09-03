@@ -24,22 +24,33 @@ jobs:
     name: Chrome Latest Test
     runs-on: ubuntu-latest
 
+    # hoist configurations to top that are expected to be updated
+    env:
+      # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
+      test_plugin_path: ${{ github.event.pull_request.head.repo.full_name == 'apache/cordova-paramedic' && './spec/testable-plugin/' || './' }}
+
+      node-version: 16
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: ${{ node-version }}
 
-      - name: Install xvfb
+      - name: Run install xvfb
         run: sudo apt-get install xvfb
 
-      - name: Environment Information
+      - name: Run Environment Information
         run: |
           node --version
           npm --version
 
-      - name: npm install and test
+      - name: Run npm install
         run: |
-          npm i -g cordova
+          npm i -g cordova@latest
           npm ci
-          xvfb-run --auto-servernum node main.js --config ./pr/local/browser.config.json  --plugin ./spec/testable-plugin/
+
+      - name: Run paramedic tests
+        env:
+          test_config: 'browser.config.json'
+        run: xvfb-run --auto-servernum node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
