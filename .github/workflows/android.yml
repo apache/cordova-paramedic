@@ -38,6 +38,8 @@ jobs:
       default_system-image-arch: x86_64
       default_system-image-target: google_apis # Most system images have a google_api option. Set this as default.
 
+      test_plugin_path: ./spec/testable-plugin/
+
     # configurations for each testing strategy (test matrix)
     strategy:
       matrix:
@@ -125,4 +127,4 @@ jobs:
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-          script: node main.js --config ./pr/local/${{ env.test_config }} --plugin ./spec/testable-plugin/
+          script: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}

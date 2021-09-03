@@ -33,6 +33,8 @@ jobs:
       # To customize these options, add "xcode-version" to the strategy matrix with its overriding value.
       default_xcode-version: latest-stable
 
+      test_plugin_path: ./spec/testable-plugin/
+
     strategy:
       matrix:
         versions:
@@ -65,4 +67,4 @@ jobs:
       - name: Run paramedic tests
         env:
           test_config: "ios-${{ matrix.versions.ios-version }}.config.json"
-        run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ./spec/testable-plugin/
+        run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
