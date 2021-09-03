@@ -64,5 +64,5 @@ jobs:
 
       - name: Run paramedic tests
         env:
-          test_config: "ios-${{ matrix.version.ios-version }}.config.json"
+          test_config: "ios-${{ matrix.versions.ios-version }}.config.json"
         run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ./spec/testable-plugin/
