@@ -50,7 +50,7 @@ jobs:
           node-version: ${{ env.node-version }}
       - uses: maxim-lobanov/setup-xcode@881be567d30efed8fb3f12b5099d68c3fb72aa3d
         env:
-          xcode-version: "${{ matrix.versions.xcode-version == '' && env.default_xcode-version || matrix.versions.xcode-version }}"
+          xcode-version: ${{ matrix.versions.xcode-version == '' && env.default_xcode-version || matrix.versions.xcode-version }}
         with:
           xcode-version: ${{ env.xcode-version }}
 
@@ -67,5 +67,5 @@ jobs:
 
       - name: Run paramedic tests
         env:
-          test_config: "ios-${{ matrix.versions.ios-version }}.config.json"
+          test_config: 'ios-${{ matrix.versions.ios-version }}.config.json'
         run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}

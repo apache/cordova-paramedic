@@ -83,8 +83,8 @@ jobs:
           node-version: ${{ env.node-version }}
       - uses: actions/setup-java@v2
         env:
-          java-version: "${{ matrix.versions.java-version == '' && env.default_java-version || matrix.versions.java-version }}"
-          java-distro: "${{ matrix.versions.java-distro == '' && env.default_java-distro || matrix.versions.java-distro }}"
+          java-version: ${{ matrix.versions.java-version == '' && env.default_java-version || matrix.versions.java-version }}
+          java-distro: ${{ matrix.versions.java-distro == '' && env.default_java-distro || matrix.versions.java-distro }}
         with:
           distribution: ${{ env.java-distro }}
           java-version: ${{ env.java-version }}
@@ -104,8 +104,8 @@ jobs:
 
       - uses: reactivecircus/android-emulator-runner@5de26e4bd23bf523e8a4b7f077df8bfb8e52b50e
         env:
-          system-image-arch: "${{ matrix.versions.system-image-arch == '' && env.default_system-image-arch || matrix.versions.system-image-arch }}"
-          system-image-target: "${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}"
+          system-image-arch: ${{ matrix.versions.system-image-arch == '' && env.default_system-image-arch || matrix.versions.system-image-arch }}
+          system-image-target: ${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}
         with:
           api-level: ${{ matrix.versions.android-api }}
           target: ${{ env.system-image-target }}
@@ -118,9 +118,9 @@ jobs:
       - name: Run paramedic tests
         uses: reactivecircus/android-emulator-runner@5de26e4bd23bf523e8a4b7f077df8bfb8e52b50e
         env:
-          system-image-arch: "${{ matrix.versions.system-image-arch == '' && env.default_system-image-arch || matrix.versions.system-image-arch }}"
-          system-image-target: "${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}"
-          test_config: "android-${{ matrix.versions.android }}.config.json"
+          system-image-arch: ${{ matrix.versions.system-image-arch == '' && env.default_system-image-arch || matrix.versions.system-image-arch }}
+          system-image-target: ${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}
+          test_config: 'android-${{ matrix.versions.android }}.config.json'
         with:
           api-level: ${{ matrix.versions.android-api }}
           target: ${{ env.system-image-target }}
