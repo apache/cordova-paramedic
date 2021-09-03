@@ -29,6 +29,9 @@ jobs:
       node-version: 16
       java-distro: 'adopt'
       platform: 'android'
+      system-image-arch: x86_64
+      default_java-version: 8 # Since most tests uses Java 8, we will default to 8.
+      default_system-image-target: google_apis # Most system images have a google_api option. Set this as default.
 
     # configurations for each testing strategy (test matrix)
     strategy:
@@ -36,35 +39,28 @@ jobs:
         versions:
           - android: 5.1
             android-api: 22
-            java-version: 8
 
           - android: 6
             android-api: 23
-            java-version: 8
 
           - android: 7
             android-api: 24
-            java-version: 8
 
           - android: 7.1
             android-api: 25
-            java-version: 8
 
           - android: 8
             android-api: 26
-            java-version: 8
 
           - android: 8.1
             android-api: 27
-            java-version: 8
+            system-image-target: default
 
           - android: 9
             android-api: 28
-            java-version: 8
 
           - android: 10
             android-api: 29
-            java-version: 8
 
           - android: 11
             android-api: 30
@@ -78,9 +74,11 @@ jobs:
         with:
           node-version: ${{ env.node-version }}
       - uses: actions/setup-java@v2
+        env:
+          java-version: "${{ matrix.versions.java-version == '' && env.default_java-version || matrix.versions.java-version }}"
         with:
           distribution: ${{ env.java-distro }}
-          java-version: ${{ matrix.versions.java-version }}
+          java-version: ${{ env.java-version }}
 
       - name: Run Environment Information
         run: |
@@ -96,10 +94,12 @@ jobs:
           npm ci
 
       - uses: reactivecircus/android-emulator-runner@v2
+        env:
+          system-image-target: "${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}"
         with:
           api-level: ${{ matrix.versions.android-api }}
-          target: google_apis
-          arch: x86_64
+          target: ${{ env.system-image-target }}
+          arch: ${{ env.system-image-arch }}
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
@@ -107,10 +107,12 @@ jobs:
 
       - name: Run paramedic tests
         uses: reactivecircus/android-emulator-runner@v2
+        env:
+          system-image-target: "${{ matrix.versions.system-image-target == '' && env.default_system-image-target || matrix.versions.system-image-target }}"
         with:
           api-level: ${{ matrix.versions.android-api }}
-          target: google_apis
-          arch: x86_64
+          target: ${{ env.system-image-target }}
+          arch: ${{ env.system-image-arch }}
           force-avd-creation: false
           disable-animations: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
