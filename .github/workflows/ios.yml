@@ -26,8 +26,8 @@ jobs:
 
     # hoist configurations to top that are expected to be updated
     env:
-      # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
-      test_plugin_path: ${{ github.event.pull_request.head.repo.full_name == 'apache/cordova-paramedic' && './spec/testable-plugin/' || './' }}
+      # Storing a copy of the repo
+      repo: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
 
       node-version: 16
 
@@ -68,4 +68,6 @@ jobs:
       - name: Run paramedic tests
         env:
           test_config: 'ios-${{ matrix.versions.ios-version }}.config.json'
+          # Generally, this should automatically work for cordova-paramedic & plugins. If the path is unique, this can be manually changed.
+          test_plugin_path: ${{ endswith(env.repo, '/cordova-paramedic') && './spec/testable-plugin/' || './' }}
         run: node main.js --config ./pr/local/${{ env.test_config }} --plugin ${{ env.test_plugin_path }}
