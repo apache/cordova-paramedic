@@ -87,6 +87,11 @@ jobs:
           npm i -g cordova@latest ios-deploy@latest
           npm ci
 
+      # Starting from Cordova-iOS 6.1, Xcode 11.x or higher is required for a successful build.
+      # By default, the Xcode 11.x app comes with the iOS 13.x.
+      # To continue testing iOS 12.x, we create a symbolic link to the iOS 12.4 Simulator Runtime.
+      # This simulator runtime is located in the Xcode 10.3 app that is preinstalled with the
+      # GitHub’s macOS 10.15 image.
       - name: Run setup iOS 12.x support
         if: ${{ matrix.versions.ios-version == '12.x' }}
         run: |
