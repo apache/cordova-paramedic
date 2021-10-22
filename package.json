@@ -54,7 +54,7 @@
     "tmp": "^0.2.1",
     "tree-kill": "^1.2.2",
     "unorm": "^1.6.0",
-    "wd": "^1.13.0"
+    "wd": "^1.14.0"
   },
   "devDependencies": {
     "@cordova/eslint-config": "^3.0.0"
