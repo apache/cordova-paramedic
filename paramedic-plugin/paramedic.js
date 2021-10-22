@@ -29,7 +29,7 @@ function Paramedic() {
 Paramedic.prototype.initialize = function() {
     var me = this;
     var connectionUri = me.loadParamedicServerUrl();
-    this.socket = io.connect(connectionUri);
+    this.socket = io(connectionUri);
 
     this.socket.on('connect', function () {
         console.log('Paramedic has been successfully connected to the server');
