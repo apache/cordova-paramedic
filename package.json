@@ -36,7 +36,7 @@
   ],
   "author": "Apache Software Foundation",
   "dependencies": {
-    "cordova-common": "^3.1.0",
+    "cordova-common": "^4.0.2",
     "execa": "^2.0.1",
     "expect-telnet": "^1.0.0",
     "jasmine": "^3.6.1",
