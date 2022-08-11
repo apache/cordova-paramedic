@@ -33,6 +33,7 @@ jobs:
   test:
     name: iOS ${{ matrix.versions.ios-version }} Test
     runs-on: ${{ matrix.versions.os-version }}
+    continue-on-error: true
 
     # hoist configurations to top that are expected to be updated
     env:
