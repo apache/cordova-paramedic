@@ -1,0 +1,7 @@
+{
+    "platform": "ios@latest",
+    "action": "run",
+    "cleanUpAfterRun": true,
+    "target": "^iPhone-14, 16.\\d$",
+    "verbose": true
+}
