@@ -18,7 +18,7 @@
     under the License.
 */
 
-var io = cordova.require('cordova-plugin-paramedic.socket.io');
+var io = cordova.require('cordova-plugin-paramedic.socket.io.min');
 
 var PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
 

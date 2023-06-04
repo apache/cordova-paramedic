@@ -27,8 +27,7 @@
     <description>Cordova Paramedic Plugin</description>
     <license>Apache 2.0</license>
 
-    <js-module src="socket.io.js" name="socket.io" />
-
+    <js-module src="socket.io.min.js" name="socket.io.min" />
     <js-module src="JasmineParamedicProxy.js" name="JasmineParamedicProxy" />
 
     <js-module src="paramedic.js" name="paramedic">
@@ -37,8 +36,11 @@
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <!-- <preference name="scheme" value="app" />
-            <preference name="hostname" value="localhost" /> -->
+            <preference name="scheme" value="app" />
+            <preference name="hostname" value="localhost" />
+            <access origin="http://127.0.0.1:*/*" />
+            <allow-navigation href="http://127.0.0.1:*/*" />
+            <allow-intent href="http://127.0.0.1:*/*" />
         </config-file>
     </platform>
 
