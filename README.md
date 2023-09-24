@@ -320,6 +320,14 @@ Directory location to store test results in junit format and the device logs
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --outputDir /Users/sampleuser/testresults
 ```
 
+#### `--tmpDir` (optional)
+
+A path to a temporary directory where a project will be built. It points to a system temporary directory by default.
+
+```shell
+cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --tmpDir ../tmp
+```
+
 #### `--cleanUpAfterRun` (optional)
 
 Flag to indicate the sample application folder must be deleted.
