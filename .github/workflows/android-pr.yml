@@ -15,14 +15,9 @@
 # specific language governing permissions and limitations
 # under the License.
 
-name: Android Testsuite
+name: Android Pull Request Testsuite
 
 on:
-  push:
-    paths-ignore:
-      - '**.md'
-      - 'LICENSE'
-      - '.eslint*'
   pull_request:
     paths-ignore:
       - '**.md'
@@ -56,22 +51,14 @@ jobs:
     strategy:
       matrix:
         versions:
-          # Test the lowest minimum supported APIs
           - android: 7
             android-api: 24
 
-          # Test the last 3-4 supported APIs
           - android: 10
             android-api: 29
 
-          - android: 11
-            android-api: 30
-
-          - android: 12L
-            android-api: 32
-
-          - android: 13
-            android-api: 33
+          - android: 14
+            android-api: 34
 
     timeout-minutes: 60
 
