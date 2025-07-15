@@ -15,45 +15,26 @@
 # specific language governing permissions and limitations
 # under the License.
 
-name: Lint Test
+* text eol=lf
 
-on:
-  push:
-    paths:
-      - '**.js'
-      - '.eslint*'
-      - '.github/workflow/lint.yml'
-  pull_request:
-    paths:
-      - '**.js'
-      - '.eslint*'
-      - '.github/workflow/lint.yml'
-
-permissions:
-  contents: read
-
-jobs:
-  test:
-    name: Lint Test
-    runs-on: ubuntu-latest
-    env:
-      node-version: 20
-
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.node-version }}
-
-      - name: Run Environment Information
-        run: |
-          node --version
-          npm --version
-
-      - name: Run npm install
-        run: |
-          npm ci
-
-      - name: Run lint test
-        run: |
-          npm run lint
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
+*.eot binary
+*.woff binary
+*.pyc binary
+*.pdf binary

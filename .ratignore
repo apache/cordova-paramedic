@@ -1,0 +1,5 @@
+node_modules
+\.(.*)
+(.*).txt
+q.min.js
+socket.io.min.js
