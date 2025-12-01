@@ -61,13 +61,10 @@ Cordova Paramedic is currently used to automatically run all plugin tests on CI.
       - [`--timeout` (optional)](#--timeout-optional)
       - [`--outputDir` (optional)](#--outputdir-optional)
       - [`--cleanUpAfterRun` (optional)](#--cleanupafterrun-optional)
-      - [`--logMins` (optional)](#--logmins-optional)
       - [`--tccDb` (optional)](#--tccdb-optional)
       - [`--args` (optional)](#--args-optional)
   - [Configuration file](#configuration-file)
   - [API Interface](#api-interface)
-  - [Quirks](#quirks)
-    - [Windows](#windows)
 
 <!--<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>-->
 
@@ -76,7 +73,6 @@ Cordova Paramedic is currently used to automatically run all plugin tests on CI.
 - Android
 - Browser
 - iOS
-- Windows
 
 ## What does it do?
 
@@ -312,14 +308,6 @@ Flag to indicate the sample application folder must be deleted.
 cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --cleanUpAfterRun
 ```
 
-#### `--logMins` (optional)
-
-Windows only parameter to indicate the duration for which the device logs to be fetched.
-
-```shell
-cordova-paramedic --platform windows --plugin cordova-plugin-inappbrowser --logMins 15
-```
-
 #### `--tccDb` (optional)
 
 iOS only parameter. The path to the sample TCC DB file, with permissions, to be copied to the simulator.
@@ -354,9 +342,9 @@ module.exports = {
     "plugins": [
         "https://github.com/apache/cordova-plugin-inappbrowser"
     ],
-    "platform": "windows",
+    "platform": "android",
     "action": "run",
-    "args": "--archs=x64 -- --appx=uap"
+    "args": ""
 }
 ```
 
@@ -370,9 +358,3 @@ You can also use `cordova-paramedic` as a module directly:
 var paramedic = require('cordova-paramedic');
 paramedic.run(config);
 ```
-
-## Quirks
-
-### Windows
-
-For Paramedic to work correctly for Windows apps you'll need to allow the loopback for "HelloCordova" app using [Windows Loopback Exemption Manager](https://github.com/tiagonmas/Windows-Loopback-Exemption-Manager) ([download](https://github.com/piksel/Windows-Loopback-Exemption-Manager/releases/tag/v1.0.0.1)).

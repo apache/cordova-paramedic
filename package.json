@@ -20,7 +20,6 @@
     "test-local-on-windows": "npm run test-browser && npm run test-android",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
     "test-ios": "node main.js --platform ios --plugin ./spec/testable-plugin/ --verbose",
-    "test-windows": "node main.js --platform windows --plugin ./spec/testable-plugin/",
     "test-browser": "node main.js --platform browser --plugin ./spec/testable-plugin/"
   },
   "keywords": [
