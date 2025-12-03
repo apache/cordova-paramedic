@@ -45,6 +45,6 @@
     "tree-kill": "^1.2.2"
   },
   "devDependencies": {
-    "@cordova/eslint-config": "^3.0.0"
+    "@cordova/eslint-config": "^6.0.0"
   }
 }
