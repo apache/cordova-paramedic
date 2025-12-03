@@ -48,7 +48,6 @@ var USAGE           = "Error missing args. \n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--logMins : (optional) Windows only - specifies number of minutes to get logs\n" +
     "--outputDir : (optional) path to save Junit results file & Device logs\n" +
-    "--skipAppiumTests : (optional) Do not run Appium tests\n" +
     "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
     "--startport/--endport `PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)\n" +
     "--target : (optional) target to deploy to\n" +
@@ -112,10 +111,6 @@ if (argv.version) {
 
     if (argv.skipMainTests) {
         paramedicConfig.setSkipMainTests(argv.skipMainTests);
-    }
-
-    if (argv.skipAppiumTests) {
-        paramedicConfig.setSkipAppiumTests(argv.skipAppiumTests);
     }
 
     if (argv.ci) {
