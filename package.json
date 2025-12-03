@@ -31,7 +31,7 @@
   ],
   "author": "Apache Software Foundation",
   "dependencies": {
-    "cordova-common": "^4.0.2",
+    "cordova-common": "^6.0.0",
     "execa": "^5.1.1",
     "jasmine-reporters": "^2.5.0",
     "jasmine-spec-reporter": "^7.0.0",
