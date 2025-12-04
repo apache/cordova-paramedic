@@ -36,9 +36,5 @@
 
     <!-- ios -->
     <platform name="ios"/>
-
     <platform name="android"/>
-    <platform name="wp8"/>
-
-
 </plugin>
