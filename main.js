@@ -29,11 +29,11 @@ var USAGE           = "Error missing args. \n" +
     "\n" +
     "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --version ...]\n" +
     "\n" +
-    "--platform PLATFORM : the platform id. Currently supports 'ios', 'browser', 'windows', 'android'.\n" +
+    "--platform PLATFORM : the platform id. Currently supports 'ios', 'browser' 'android'.\n" +
                     "\tPath to platform can be specified as link to git repo like:\n" +
-                    "\twindows@https://github.com/apache/cordova-windows.git\n" +
+                    "\tandroid@https://github.com/apache/cordova-android.git\n" +
                     "\tor path to local copied git repo like:\n" +
-                    "\twindows@../cordova-windows/\n" +
+                    "\tandroid@../cordova-android/\n" +
     "--plugin PATH : the relative or absolute path to a plugin folder\n" +
                     "\texpected to have a 'tests' folder.\n" +
                     "\tYou may specify multiple --plugin flags and they will all\n" +
@@ -46,7 +46,6 @@ var USAGE           = "Error missing args. \n" +
     "--config : (optional) read configuration from paramedic configuration file\n" +
     "--fileTransferServer : (optional) (cordova-plugin-file-transfer only) A server address tests should connect to\n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
-    "--logMins : (optional) Windows only - specifies number of minutes to get logs\n" +
     "--outputDir : (optional) path to save Junit results file & Device logs\n" +
     "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
     "--startport/--endport `PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)\n" +
