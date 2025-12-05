@@ -53,7 +53,6 @@ var USAGE           = "Error missing args. \n" +
     "--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.\n" +
     "--timeout `MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
                 "\t(defaults to 10 minutes) \n" +
-    "--useTunnel: (optional) use tunneling instead of local address. default is false\n" +
     "--verbose : (optional) verbose mode. Display more information output\n" +
     "--version : (optional) prints cordova-paramedic version and exits\n" +
     "";
@@ -99,13 +98,6 @@ if (argv.version) {
 
     if (argv.action) {
         paramedicConfig.setAction(argv.action);
-    }
-
-    if (argv.useTunnel) {
-        if (argv.useTunnel === 'false') {
-            argv.useTunnel = false;
-        }
-        paramedicConfig.setUseTunnel(argv.useTunnel);
     }
 
     if (argv.skipMainTests) {

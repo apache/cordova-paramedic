@@ -54,8 +54,6 @@ Cordova Paramedic is currently used to automatically run all plugin tests on CI.
     - [Emulator/Device to use for tests](#emulatordevice-to-use-for-tests)
       - [`--target` (optional)](#--target-optional)
     - [Test Result Server](#test-result-server)
-      - [`--useTunnel` (optional)](#--usetunnel-optional)
-      - [`--externalServerUrl` (optional)](#--externalserverurl-optional)
       - [`--port` (optional)](#--port-optional)
     - [Test configuration](#test-configuration)
       - [`--timeout` (optional)](#--timeout-optional)
@@ -182,8 +180,7 @@ cordova-paramedic --platform android --plugin ./
 **Test your current plugin on a specific Android device (ID via `adb devices -l`):**
 
 ```shell
-
-cordova-paramedic --platform android --plugin ./ --target 02e7f7e9215da7f8 --useTunnel
+cordova-paramedic --platform android --plugin ./ --target 02e7f7e9215da7f8
 ```
 
 ## Command Line Interface
@@ -256,23 +253,6 @@ cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPho
 
 ### Test Result Server
 
-#### `--useTunnel` (optional)
-
-Use a tunnel (via [`localtunnel`](https://www.npmjs.com/package/localtunnel)) instead of local address (default is false).
-Useful when testing on real devices and don't want to specify external IP address (see `--externalServerUrl` below) of paramedic server.
-
-```shell
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --useTunnel
-```
-
-#### `--externalServerUrl` (optional)
-
-Useful when testing on real device (`--device` parameter) so that tests results from device could be posted back to paramedic server.
-
-```shell
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --externalServerUrl http://10.0.8.254
-```
-
 #### `--port` (optional)
 
 Port to use for posting results from emulator back to paramedic server (default is from `8008`). You can also specify a range using `--startport` and `endport` and paramedic will select the first available.
@@ -337,8 +317,6 @@ Example configuration file is showed below.
 
 ```js
 module.exports = {
-    // "externalServerUrl": "http://10.0.8.254",
-    "useTunnel": true,
     "plugins": [
         "https://github.com/apache/cordova-plugin-inappbrowser"
     ],
