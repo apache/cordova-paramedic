@@ -44,7 +44,6 @@ var USAGE           = "Error missing args. \n" +
     "--cleanUpAfterRun : (optional) cleans up the application after the run\n" +
     "--cli : (optional) A path to Cordova CLI\n" +
     "--config : (optional) read configuration from paramedic configuration file\n" +
-    "--fileTransferServer : (optional) (cordova-plugin-file-transfer only) A server address tests should connect to\n" +
     "--justbuild : (optional) just builds the project, without running the tests \n" +
     "--outputDir : (optional) path to save Junit results file & Device logs\n" +
     "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
@@ -110,10 +109,6 @@ if (argv.version) {
 
     if (argv.target) {
         paramedicConfig.setTarget(argv.target);
-    }
-
-    if (argv.fileTransferServer) {
-        paramedicConfig.setFileTransferServer(argv.fileTransferServer);
     }
 
     if (argv.cli) {

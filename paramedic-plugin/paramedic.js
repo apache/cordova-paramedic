@@ -124,10 +124,6 @@ Paramedic.prototype.loadParamedicServerUrl = function () {
     return getMedicConfig().logurl;
 };
 
-Paramedic.prototype.loadParamedicFileServerUrl = function () {
-    return getMedicConfig().fileserverurl;
-};
-
 cordova.paramedic = new Paramedic();
 cordova.paramedic.initialize();
 
