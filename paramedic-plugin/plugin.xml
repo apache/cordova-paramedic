@@ -27,7 +27,6 @@
     <description>Cordova Paramedic Plugin</description>
     <license>Apache 2.0</license>
 
-    <js-module src="socket.io.min.js" name="socket.io.min" />
     <js-module src="JasmineParamedicProxy.js" name="JasmineParamedicProxy" />
 
     <js-module src="paramedic.js" name="paramedic">
@@ -37,6 +36,7 @@
     <config-file target="config.xml" parent="/*">
       <access origin="http://127.0.0.1:*/*" />
       <access origin="http://10.0.2.2:*/*" />
+      <access origin="ws://127.0.0.1:*/*" />
 
       <allow-navigation href="http://127.0.0.1:*/*" />
       <allow-navigation href="http://10.0.2.2:*/*" />

@@ -18,8 +18,6 @@
     under the License.
 */
 
-var io = cordova.require('cordova-plugin-paramedic.socket.io.min');
-
 var PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
 
 function Paramedic() {
@@ -29,12 +27,41 @@ function Paramedic() {
 Paramedic.prototype.initialize = function() {
     var me = this;
     var connectionUri = me.loadParamedicServerUrl();
-    this.socket = io(connectionUri);
 
-    this.socket.on('connect', function () {
-        console.log('Paramedic has been successfully connected to the server');
-        if (typeof device != 'undefined') me.socket.emit('deviceInfo', device);
+    const socket = new WebSocket(connectionUri);
+    /**
+     * While the testing application is running, events may be generated
+     * before the socket connection is fully open. In this case, the events
+     * are stored in the eventQueue and will be sent once the connection
+     * has opened.
+     */
+    socket.cdvEventQueue = [];
+
+    socket.cdvSendEvent = function (eventName, payload) {
+        const message = JSON.stringify({ event: eventName, data: payload });
+
+        /**
+         * Sends the event immediately if the socket is open; otherwise,
+         * queues the event to be sent later when the connection opens.
+         */
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(message);
+        } else {
+            socket.cdvEventQueue.push(message);
+        }
+    };
+
+    /**
+     * Sends all queued events once the socket connection is open.
+     */
+    socket.addEventListener('open', () => {
+        for (const msg of socket.cdvEventQueue) {
+            socket.send(msg);
+        }
+        socket.cdvEventQueue = [];
     });
+
+    this.socket = socket;
 
     this.overrideConsole();
     this.injectJasmineReporter();
@@ -45,7 +72,6 @@ Paramedic.prototype.initialize = function() {
 
 
 Paramedic.prototype.overrideConsole = function () {
-
     var origConsole = window.console;
     var me = this;
 
@@ -53,7 +79,7 @@ Paramedic.prototype.overrideConsole = function () {
         return function () {
             origConsole[type].apply(origConsole, arguments);
 
-            me.socket.emit('deviceLog', { type: type, msg: Array.prototype.slice.apply(arguments) });
+            me.socket.cdvSendEvent('deviceLog', { type: type, msg: Array.prototype.slice.apply(arguments) });
         };
     }
     window.console = {

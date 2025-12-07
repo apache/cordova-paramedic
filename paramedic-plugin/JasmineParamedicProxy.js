@@ -29,34 +29,34 @@ function JasmineParamedicProxy(socket) {
     this.specFailed = 0;
 }
 
-JasmineParamedicProxy.prototype.jasmineStarted = function (o) {
-    this.socket.emit('jasmineStarted', o);
+JasmineParamedicProxy.prototype.jasmineStarted = function (payload) {
+    this.socket.cdvSendEvent('jasmineStarted', payload);
 };
 
-JasmineParamedicProxy.prototype.specStarted = function (o) {
-    this.socket.emit('specStarted', o);
+JasmineParamedicProxy.prototype.specStarted = function (payload) {
+    this.socket.cdvSendEvent('specStarted', payload);
 };
 
-JasmineParamedicProxy.prototype.specDone = function (o) {
-    if (o.status !== 'disabled') {
+JasmineParamedicProxy.prototype.specDone = function (payload) {
+    if (payload.status !== 'disabled') {
         this.specExecuted++;
     }
-    if (o.status === 'failed') {
+    if (payload.status === 'failed') {
         this.specFailed++;
     }
 
-    this.socket.emit('specDone', o);
+    this.socket.cdvSendEvent('specDone', payload);
 };
 
-JasmineParamedicProxy.prototype.suiteStarted = function (o) {
-    this.socket.emit('suiteStarted', o);
+JasmineParamedicProxy.prototype.suiteStarted = function (payload) {
+    this.socket.cdvSendEvent('suiteStarted', payload);
 };
 
-JasmineParamedicProxy.prototype.suiteDone = function (o) {
-    this.socket.emit('suiteDone', o);
+JasmineParamedicProxy.prototype.suiteDone = function (payload) {
+    this.socket.cdvSendEvent('suiteDone', payload);
 };
 
-JasmineParamedicProxy.prototype.jasmineDone = function (o) {
+JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
     var p = 'Desktop';
     var devmodel = 'none';
     var version = cordova.version;
@@ -66,22 +66,22 @@ JasmineParamedicProxy.prototype.jasmineDone = function (o) {
         version = device.version.toLowerCase();
     }
 
-    o = o || {};
+    payload = payload || {};
 
     // include platform info
-    o.cordova = {
+    payload.cordova = {
         platform: (platformMap.hasOwnProperty(p) ? platformMap[p] : p),
         version: version,
         model: devmodel
     };
 
     // include common spec results
-    o.specResults = {
+    payload.specResults = {
         specExecuted : this.specExecuted,
         specFailed   : this.specFailed
     };
 
-    this.socket.emit('jasmineDone', o);
+    this.socket.cdvSendEvent('jasmineDone', payload);
 };
 
 module.exports = JasmineParamedicProxy;

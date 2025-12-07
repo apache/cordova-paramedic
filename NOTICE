@@ -3,12 +3,3 @@ Copyright 2012 The Apache Software Foundation
 
 This product includes software developed at
 The Apache Software Foundation (http://www.apache.org/).
-
---
-
-This product includes software developed by:
-
-- ./paramedic-plugin/socket.io.min.js
-  
-  Copyright 2014-2023 Guillermo Rauch
-  Licensed under the MIT License

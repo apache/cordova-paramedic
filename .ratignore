@@ -18,4 +18,3 @@
 .git/
 coverage/
 node_modules/
-paramedic-plugin/socket.io.min.js
