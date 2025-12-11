@@ -35,7 +35,6 @@
     "jasmine-reporters": "^2.5.2",
     "jasmine-spec-reporter": "^7.0.0",
     "minimist": "^1.2.8",
-    "q": "^1.5.1",
     "shelljs": "^0.10.0",
     "tcp-port-used": "^1.0.2",
     "tmp": "^0.2.5",
