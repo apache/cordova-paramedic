@@ -1,6 +1,7 @@
 {
   "name": "testable-plugin",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "index.js",
   "directories": {
@@ -9,6 +10,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": ""
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0"
 }

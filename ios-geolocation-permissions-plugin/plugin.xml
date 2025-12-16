@@ -20,12 +20,12 @@
 #
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="ios-geolocation-permissions-plugin"
-        version="0.0.1">
+    id="ios-geolocation-permissions-plugin"
+    version="2.0.0-dev">
 
     <name>Geolocation permissions</name>
     <description>Plugin to allow geolocation on iOS simulator w/out presenting OS dialog</description>
-    <license>Apache 2.0</license>
+    <license>Apache-2.0</license>
 
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
@@ -37,7 +37,5 @@
 
         <source-file src="src/ios/CDVAllowLocation.m" />
         <framework src="CoreLocation.framework" />
-
     </platform>
-
 </plugin>

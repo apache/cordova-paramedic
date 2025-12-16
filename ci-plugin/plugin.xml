@@ -20,15 +20,14 @@
 #
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="cordova-plugin-paramedic-is-ci"
-      version="1.0.0-dev">
+    id="cordova-plugin-paramedic-is-ci"
+    version="1.0.0-dev">
 
     <name>Paramedic CI</name>
     <description>Install this plugin to let tests know that they are running on CI</description>
-    <license>Apache 2.0</license>
+    <license>Apache-2.0</license>
 
     <js-module src="ci.js" name="ci">
         <runs/>
     </js-module>
-
 </plugin>

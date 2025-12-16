@@ -20,13 +20,13 @@
 #
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      id="cordova-plugin-paramedic"
-      version="1.2.1-dev">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-paramedic"
+    version="1.2.1-dev">
 
     <name>Paramedic</name>
     <description>Cordova Paramedic Plugin</description>
-    <license>Apache 2.0</license>
+    <license>Apache-2.0</license>
 
     <js-module src="JasmineParamedicProxy.js" name="JasmineParamedicProxy" />
 

@@ -20,22 +20,19 @@
 #
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="testable-plugin"
-    version="0.0.1">
+    version="2.0.0-dev">
+
     <name>Testable Plugin</name>
     <description>Cordova Testing Plugin</description>
-    <license>Apache 2.0</license>
+    <license>Apache-2.0</license>
     <keywords>cordova</keywords>
-    <repo></repo>
-    <issue></issue>
 
     <js-module src="www/testable.js" name="testable">
         <clobbers target="testable" />
     </js-module>
 
-    <!-- ios -->
     <platform name="ios"/>
     <platform name="android"/>
 </plugin>
