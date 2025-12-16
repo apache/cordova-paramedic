@@ -19,21 +19,18 @@
 
 exports.defineAutoTests = function() {
   describe('Testable', function () {
-
-    it("should pass a test", function() {
+    it('should pass a test', () => {
       expect(window).toBeDefined();
     });
 
-    it("should exist", function() {
+    it('should exist', () => {
       expect(window.testable).toBeDefined();
     });
 
-    it("should be self aware",function() {
-      expect(window.testable.doYouExist).toEqual("fuckYeah");
+    it('should be self aware', () => {
+      expect(window.testable.doYouExist).toEqual('IDoExist');
     })
-
   });
 };
 
 exports.defineManualTests = function(){};
-

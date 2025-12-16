@@ -18,11 +18,9 @@
 */
 
 module.exports = {
-    "verbose": false,
-    "plugins": [
-        "https://github.com/apache/cordova-plugin-inappbrowser"
-    ],
-     "platform": "android",
-     "action": "run",
-     "args": ""
+    verbose: false,
+    plugins: ['https://github.com/apache/cordova-plugin-inappbrowser'],
+    platform: 'android',
+    action: 'run',
+    args: ''
 };
