@@ -30,14 +30,14 @@ const USAGE = `Error missing args.
 cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --version ...]
 
 --platform PLATFORM : the platform id. Currently supports 'ios', 'browser' 'android'.
-	Path to platform can be specified as link to git repo like:
-	android@https://github.com/apache/cordova-android.git
-	or path to local copied git repo like:
-	android@../cordova-android/
+    Path to platform can be specified as link to git repo like:
+    android@https://github.com/apache/cordova-android.git
+    or path to local copied git repo like:
+    android@../cordova-android/
 --plugin PATH : the relative or absolute path to a plugin folder
-	expected to have a 'tests' folder.
-	You may specify multiple --plugin flags and they will all
-	be installed and tested together.
+    expected to have a 'tests' folder.
+    You may specify multiple --plugin flags and they will all
+    be installed and tested together.
 
 --args: (optional) add command line args to the "cordova build" and "cordov run" commands
 --ci : (optional) Skip tests that require user interaction
@@ -51,20 +51,20 @@ cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS
 --target : (optional) target to deploy to
 --tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.
 --timeout MSECS : (optional) time in millisecs to wait for tests to pass|fail
-	(defaults to 10 minutes)
+    (defaults to 10 minutes)
 --verbose : (optional) verbose mode. Display more information output
 --version : (optional) prints cordova-paramedic version and exits
 `;
 
-const argv = parseArgs(process.argv.slice(2), { 'string': ['plugin'] });
+const argv = parseArgs(process.argv.slice(2), { string: ['plugin'] });
 const pathToParamedicConfig = utilities.getConfigPath(argv.config);
 
 if (argv.version) {
-    console.log(require('./package.json')['version']);
+    console.log(require('./package.json').version);
     process.exit(0);
 }
 
-if (!pathToParamedicConfig && (!argv.platform || !argv.plugin) ) {
+if (!pathToParamedicConfig && (!argv.platform || !argv.plugin)) {
     console.log(USAGE);
     process.exit(1);
 }
@@ -85,7 +85,7 @@ if (argv.outputDir) {
     paramedicConfig.setOutputDir(argv.outputDir);
 }
 
-if (argv.tccDb){
+if (argv.tccDb) {
     paramedicConfig.setTccDb(argv.tccDb);
 }
 

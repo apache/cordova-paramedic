@@ -17,4 +17,4 @@
     under the License.
 */
 
-module.exports = { doYouExist:'IDoExist' };
+module.exports = { doYouExist: 'IDoExist' };

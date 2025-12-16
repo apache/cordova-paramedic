@@ -17,8 +17,8 @@
     under the License.
 */
 
-const { defineConfig } = require('eslint/config')
-const nodeConfig = require('@cordova/eslint-config/node')
+const { defineConfig } = require('eslint/config');
+const nodeConfig = require('@cordova/eslint-config/node');
 
 module.exports = defineConfig([
     ...nodeConfig

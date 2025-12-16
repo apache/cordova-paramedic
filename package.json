@@ -16,7 +16,7 @@
   "scripts": {
     "test": "npm run lint & npm run test-local",
     "test-on-windows": "npm run lint & npm run test-local-on-windows",
-    "lint": "eslint lib",
+    "lint": "eslint .",
     "test-local": "npm run test-browser && npm run test-android && npm run test-ios",
     "test-local-on-windows": "npm run test-browser && npm run test-android",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",

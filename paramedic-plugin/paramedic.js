@@ -1,4 +1,4 @@
-/* global window, cordova, device, jasmine, XMLHttpRequest */
+/* global window, cordova, jasmine, XMLHttpRequest */
 /**
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -20,11 +20,11 @@
 
 const PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
 
-function Paramedic() {
+function Paramedic () {
 
 }
 
-Paramedic.prototype.initialize = function() {
+Paramedic.prototype.initialize = function () {
     const me = this;
     const connectionUri = me.loadParamedicServerUrl();
 
@@ -70,22 +70,21 @@ Paramedic.prototype.initialize = function() {
     window.PARAMEDIC = true;
 };
 
-
 Paramedic.prototype.overrideConsole = function () {
     const origConsole = window.console;
     const me = this;
 
-    function createCustomLogger(type) {
+    function createCustomLogger (type) {
         return function () {
             origConsole[type].apply(origConsole, arguments);
 
-            me.socket.cdvSendEvent('deviceLog', { type: type, msg: Array.prototype.slice.apply(arguments) });
+            me.socket.cdvSendEvent('deviceLog', { type, msg: Array.prototype.slice.apply(arguments) });
         };
     }
     window.console = {
         log: createCustomLogger('log'),
         warn: createCustomLogger('warn'),
-        error: createCustomLogger('error'),
+        error: createCustomLogger('error')
     };
     console.log('Paramedic console has been installed.');
 };
@@ -111,14 +110,12 @@ Paramedic.prototype.loadParamedicServerUrl = function () {
         const cfg = JSON.parse(xhr.responseText);
 
         return cfg.logurl || PARAMEDIC_SERVER_DEFAULT_URL;
-
     } catch (ex) {
         console.log('Unable to load paramedic server url: ' + ex);
     }
 
     return PARAMEDIC_SERVER_DEFAULT_URL;
 };
-
 
 Paramedic.prototype.loadParamedicServerUrl = function () {
     return getMedicConfig().logurl;

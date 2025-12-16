@@ -19,11 +19,11 @@
 */
 
 const platformMap = {
-    'ipod touch':'ios',
-    'iphone':'ios'
+    'ipod touch': 'ios',
+    iphone: 'ios'
 };
 
-function JasmineParamedicProxy(socket) {
+function JasmineParamedicProxy (socket) {
     this.socket = socket;
     this.specExecuted = 0;
     this.specFailed = 0;
@@ -58,8 +58,8 @@ JasmineParamedicProxy.prototype.suiteDone = function (payload) {
 
 JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
     let platform = 'Desktop';
-    const devmodel = 'none';
-    const version = cordova.version;
+    let devmodel = 'none';
+    let version = cordova.version;
 
     if (typeof device !== 'undefined') {
         platform = device.platform.toLowerCase();
@@ -71,8 +71,8 @@ JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
 
     // include platform info
     payload.cordova = {
-        platform: (platformMap.hasOwnProperty(platform) ? platformMap[platform] : platform),
-        version: version,
+        platform: (Object.prototype.hasOwnProperty.call(platformMap, platform) ? platformMap[platform] : platform),
+        version,
         model: devmodel
     };
 

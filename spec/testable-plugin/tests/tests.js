@@ -17,20 +17,22 @@
     under the License.
 */
 
-exports.defineAutoTests = function() {
-  describe('Testable', function () {
-    it('should pass a test', () => {
-      expect(window).toBeDefined();
-    });
+/* global describe, it, expect, window */
 
-    it('should exist', () => {
-      expect(window.testable).toBeDefined();
-    });
+exports.defineAutoTests = function () {
+    describe('Testable', function () {
+        it('should pass a test', () => {
+            expect(window).toBeDefined();
+        });
 
-    it('should be self aware', () => {
-      expect(window.testable.doYouExist).toEqual('IDoExist');
-    })
-  });
+        it('should exist', () => {
+            expect(window.testable).toBeDefined();
+        });
+
+        it('should be self aware', () => {
+            expect(window.testable.doYouExist).toEqual('IDoExist');
+        });
+    });
 };
 
-exports.defineManualTests = function(){};
+exports.defineManualTests = function () {};

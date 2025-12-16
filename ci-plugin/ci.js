@@ -19,11 +19,9 @@
 
 /* global window */
 
-function CI() {
+function CI () { }
 
-}
-
-CI.prototype.initialize = function() {
+CI.prototype.initialize = function () {
     window.IS_CI = true;
 };
 
