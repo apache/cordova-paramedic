@@ -317,13 +317,12 @@ Example configuration file is showed below.
 
 ```js
 module.exports = {
-    "plugins": [
-        "https://github.com/apache/cordova-plugin-inappbrowser"
-    ],
-    "platform": "android",
-    "action": "run",
-    "args": ""
-}
+    verbose: false,
+    plugins: ['https://github.com/apache/cordova-plugin-inappbrowser'],
+    platform: 'android',
+    action: 'run',
+    args: ''
+};
 ```
 
 More configuration file examples could be found in `sample-config` folder.
@@ -333,6 +332,6 @@ More configuration file examples could be found in `sample-config` folder.
 You can also use `cordova-paramedic` as a module directly:
 
 ```javascript
-var paramedic = require('cordova-paramedic');
+const paramedic = require('cordova-paramedic');
 paramedic.run(config);
 ```

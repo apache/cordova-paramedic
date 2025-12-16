@@ -18,7 +18,7 @@
     under the License.
 */
 
-var platformMap = {
+const platformMap = {
     'ipod touch':'ios',
     'iphone':'ios'
 };
@@ -57,11 +57,12 @@ JasmineParamedicProxy.prototype.suiteDone = function (payload) {
 };
 
 JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
-    var p = 'Desktop';
-    var devmodel = 'none';
-    var version = cordova.version;
+    let platform = 'Desktop';
+    const devmodel = 'none';
+    const version = cordova.version;
+
     if (typeof device !== 'undefined') {
-        p = device.platform.toLowerCase();
+        platform = device.platform.toLowerCase();
         devmodel = device.model || device.name;
         version = device.version.toLowerCase();
     }
@@ -70,15 +71,15 @@ JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
 
     // include platform info
     payload.cordova = {
-        platform: (platformMap.hasOwnProperty(p) ? platformMap[p] : p),
+        platform: (platformMap.hasOwnProperty(platform) ? platformMap[platform] : platform),
         version: version,
         model: devmodel
     };
 
     // include common spec results
     payload.specResults = {
-        specExecuted : this.specExecuted,
-        specFailed   : this.specFailed
+        specExecuted: this.specExecuted,
+        specFailed: this.specFailed
     };
 
     this.socket.cdvSendEvent('jasmineDone', payload);
