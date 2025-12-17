@@ -47,7 +47,7 @@ cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS
 --justbuild : (optional) just builds the project, without running the tests
 --outputDir : (optional) path to save Junit results file & Device logs
 --skipMainTests : (optional) Do not run main (cordova-test-framework) tests
---startport/--endport PORTNUM : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)
+--startport/--endport PORTNUM : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from ${ParamedicConfig.DEFAULT_START_PORT} to ${ParamedicConfig.DEFAULT_END_PORT})
 --target : (optional) target to deploy to
 --tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.
 --timeout MSECS : (optional) time in millisecs to wait for tests to pass|fail
