@@ -53,8 +53,6 @@ Cordova Paramedic is currently used to automatically run all plugin tests on CI.
       - [`--justbuild` (optional)](#--justbuild-optional)
     - [Emulator/Device to use for tests](#emulatordevice-to-use-for-tests)
       - [`--target` (optional)](#--target-optional)
-    - [Test Result Server](#test-result-server)
-      - [`--port` (optional)](#--port-optional)
     - [Test configuration](#test-configuration)
       - [`--timeout` (optional)](#--timeout-optional)
       - [`--outputDir` (optional)](#--outputdir-optional)
@@ -239,7 +237,7 @@ cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --justbuil
 
 #### `--target` (optional)
 
-For Android: The device ID (from `adb devices -l`) of a device the tests should be run on.  
+For Android: The device ID (from `adb devices -l`) of a device the tests should be run on.
 
 ```shell
 cordova-paramedic --platform android --plugin cordova-plugin-contacts --target 02e7f7e9215da7f8
@@ -249,17 +247,6 @@ For iOS: A string that is used to pick the device (from the `cordova run --list 
 
 ```shell
 cordova-paramedic --platform ios --plugin cordova-plugin-contacts --target "iPhone-8"
-```
-
-### Test Result Server
-
-#### `--port` (optional)
-
-Port to use for posting results from emulator back to paramedic server (default is from `8008`). You can also specify a range using `--startport` and `endport` and paramedic will select the first available.
-
-```shell
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --port 8010
-cordova-paramedic --platform ios --plugin cordova-plugin-inappbrowser --startport 8000 endport 8020
 ```
 
 ### Test configuration

@@ -18,11 +18,7 @@
     under the License.
 */
 
-const PARAMEDIC_SERVER_DEFAULT_URL = 'http://127.0.0.1:8008';
-
-function Paramedic () {
-
-}
+function Paramedic () { }
 
 Paramedic.prototype.initialize = function () {
     const me = this;
@@ -108,41 +104,15 @@ Paramedic.prototype.loadParamedicServerUrl = function () {
         xhr.open('GET', '../medic.json', false);
         xhr.send(null);
         const cfg = JSON.parse(xhr.responseText);
-
-        return cfg.logurl || PARAMEDIC_SERVER_DEFAULT_URL;
+        return cfg.logurl;
     } catch (ex) {
         console.log('Unable to load paramedic server url: ' + ex);
     }
 
-    return PARAMEDIC_SERVER_DEFAULT_URL;
-};
-
-Paramedic.prototype.loadParamedicServerUrl = function () {
-    return getMedicConfig().logurl;
+    throw new Error('[paramedic] Failed to find logurl.');
 };
 
 cordova.paramedic = new Paramedic();
 cordova.paramedic.initialize();
-
-function getMedicConfig () {
-    const cfg = {
-        logurl: PARAMEDIC_SERVER_DEFAULT_URL
-    };
-
-    try {
-        // attempt to synchronously load medic config
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', '../medic.json', false);
-        xhr.send(null);
-        const parsedCfg = JSON.parse(xhr.responseText);
-        if (parsedCfg.logurl) {
-            cfg.logurl = parsedCfg.logurl;
-        }
-    } catch (ex) {
-        console.log('Unable to load paramedic server url: ' + ex);
-    }
-
-    return cfg;
-}
 
 module.exports = Paramedic;
