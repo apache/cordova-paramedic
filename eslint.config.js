@@ -1,4 +1,4 @@
-/*
+/**
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -17,8 +17,8 @@
     under the License.
 */
 
-const { defineConfig } = require('eslint/config')
-const nodeConfig = require('@cordova/eslint-config/node')
+const { defineConfig } = require('eslint/config');
+const nodeConfig = require('@cordova/eslint-config/node');
 
 module.exports = defineConfig([
     ...nodeConfig

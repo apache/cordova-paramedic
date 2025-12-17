@@ -8,7 +8,7 @@
     "License"); you may not use this file except in compliance
     with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing,
     software distributed under the License is distributed on an
@@ -18,12 +18,12 @@
     under the License.
 */
 
-var platformMap = {
-    'ipod touch':'ios',
-    'iphone':'ios'
+const platformMap = {
+    'ipod touch': 'ios',
+    iphone: 'ios'
 };
 
-function JasmineParamedicProxy(socket) {
+function JasmineParamedicProxy (socket) {
     this.socket = socket;
     this.specExecuted = 0;
     this.specFailed = 0;
@@ -57,11 +57,12 @@ JasmineParamedicProxy.prototype.suiteDone = function (payload) {
 };
 
 JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
-    var p = 'Desktop';
-    var devmodel = 'none';
-    var version = cordova.version;
+    let platform = 'Desktop';
+    let devmodel = 'none';
+    let version = cordova.version;
+
     if (typeof device !== 'undefined') {
-        p = device.platform.toLowerCase();
+        platform = device.platform.toLowerCase();
         devmodel = device.model || device.name;
         version = device.version.toLowerCase();
     }
@@ -70,15 +71,15 @@ JasmineParamedicProxy.prototype.jasmineDone = function (payload) {
 
     // include platform info
     payload.cordova = {
-        platform: (platformMap.hasOwnProperty(p) ? platformMap[p] : p),
-        version: version,
+        platform: (Object.prototype.hasOwnProperty.call(platformMap, platform) ? platformMap[platform] : platform),
+        version,
         model: devmodel
     };
 
     // include common spec results
     payload.specResults = {
-        specExecuted : this.specExecuted,
-        specFailed   : this.specFailed
+        specExecuted: this.specExecuted,
+        specFailed: this.specFailed
     };
 
     this.socket.cdvSendEvent('jasmineDone', payload);

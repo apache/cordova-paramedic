@@ -1,6 +1,7 @@
 {
   "name": "cordova-paramedic",
   "version": "2.0.0-dev.0",
+  "author": "Apache Software Foundation",
   "license": "Apache-2.0",
   "description": "Use medic to test a cordova plugin locally",
   "main": "paramedic.js",
@@ -15,7 +16,7 @@
   "scripts": {
     "test": "npm run lint & npm run test-local",
     "test-on-windows": "npm run lint & npm run test-local-on-windows",
-    "lint": "eslint lib",
+    "lint": "eslint .",
     "test-local": "npm run test-browser && npm run test-android && npm run test-ios",
     "test-local-on-windows": "npm run test-browser && npm run test-android",
     "test-android": "node main.js --platform android --plugin ./spec/testable-plugin/",
@@ -28,7 +29,6 @@
     "medic",
     "test"
   ],
-  "author": "Apache Software Foundation",
   "dependencies": {
     "cordova-common": "^6.0.0",
     "jasmine-reporters": "^2.5.2",

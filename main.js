@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-/*
+/**
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
     distributed with this work for additional information
@@ -19,118 +19,111 @@
     under the License.
 */
 
-var parseArgs       = require('minimist');
-var path            = require('path');
-var paramedic       = require('./lib/paramedic');
-var ParamedicConfig = require('./lib/ParamedicConfig');
-var util            = require('./lib/utils').utilities;
+const parseArgs = require('minimist');
 
-var USAGE           = "Error missing args. \n" +
-    "\n" +
-    "cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --version ...]\n" +
-    "\n" +
-    "--platform PLATFORM : the platform id. Currently supports 'ios', 'browser' 'android'.\n" +
-                    "\tPath to platform can be specified as link to git repo like:\n" +
-                    "\tandroid@https://github.com/apache/cordova-android.git\n" +
-                    "\tor path to local copied git repo like:\n" +
-                    "\tandroid@../cordova-android/\n" +
-    "--plugin PATH : the relative or absolute path to a plugin folder\n" +
-                    "\texpected to have a 'tests' folder.\n" +
-                    "\tYou may specify multiple --plugin flags and they will all\n" +
-                    "\tbe installed and tested together.\n" +
-    "\n" +
-    "--args: (optional) add command line args to the \"cordova build\" and \"cordov run\" commands \n" +
-    "--ci : (optional) Skip tests that require user interaction\n" +
-    "--cleanUpAfterRun : (optional) cleans up the application after the run\n" +
-    "--cli : (optional) A path to Cordova CLI\n" +
-    "--config : (optional) read configuration from paramedic configuration file\n" +
-    "--justbuild : (optional) just builds the project, without running the tests \n" +
-    "--outputDir : (optional) path to save Junit results file & Device logs\n" +
-    "--skipMainTests : (optional) Do not run main (cordova-test-framework) tests\n" +
-    "--startport/--endport `PORTNUM` : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)\n" +
-    "--target : (optional) target to deploy to\n" +
-    "--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.\n" +
-    "--timeout `MSECS` : (optional) time in millisecs to wait for tests to pass|fail \n" +
-                "\t(defaults to 10 minutes) \n" +
-    "--verbose : (optional) verbose mode. Display more information output\n" +
-    "--version : (optional) prints cordova-paramedic version and exits\n" +
-    "";
+const paramedic = require('./lib/paramedic');
+const ParamedicConfig = require('./lib/ParamedicConfig');
+const { utilities } = require('./lib/utils');
 
-var argv = parseArgs(process.argv.slice(2), {
-    "string": ["plugin"]
-});
-var pathToParamedicConfig = util.getConfigPath(argv.config);
+const USAGE = `Error missing args.
+
+cordova-paramedic --platform PLATFORM --plugin PATH [--justbuild --timeout MSECS --startport PORTNUM --endport PORTNUM --version ...]
+
+--platform PLATFORM : the platform id. Currently supports 'ios', 'browser' 'android'.
+    Path to platform can be specified as link to git repo like:
+    android@https://github.com/apache/cordova-android.git
+    or path to local copied git repo like:
+    android@../cordova-android/
+--plugin PATH : the relative or absolute path to a plugin folder
+    expected to have a 'tests' folder.
+    You may specify multiple --plugin flags and they will all
+    be installed and tested together.
+
+--args: (optional) add command line args to the "cordova build" and "cordov run" commands
+--ci : (optional) Skip tests that require user interaction
+--cleanUpAfterRun : (optional) cleans up the application after the run
+--cli : (optional) A path to Cordova CLI
+--config : (optional) read configuration from paramedic configuration file
+--justbuild : (optional) just builds the project, without running the tests
+--outputDir : (optional) path to save Junit results file & Device logs
+--skipMainTests : (optional) Do not run main (cordova-test-framework) tests
+--startport/--endport PORTNUM : (optional) ports to find available and use for posting results from emulator back to paramedic server (default is from 8008 to 8009)
+--target : (optional) target to deploy to
+--tccDb : (optional) iOS only - specifies the path for the TCC.db file to be copied.
+--timeout MSECS : (optional) time in millisecs to wait for tests to pass|fail
+    (defaults to 10 minutes)
+--verbose : (optional) verbose mode. Display more information output
+--version : (optional) prints cordova-paramedic version and exits
+`;
+
+const argv = parseArgs(process.argv.slice(2), { string: ['plugin'] });
+const pathToParamedicConfig = utilities.getConfigPath(argv.config);
 
 if (argv.version) {
-    console.log(require('./package.json')['version']);
+    console.log(require('./package.json').version);
     process.exit(0);
-} else if (pathToParamedicConfig || // --config
-    argv.platform && argv.plugin) { // or --platform and --plugin
+}
 
-    var paramedicConfig = pathToParamedicConfig ?
-        ParamedicConfig.parseFromFile(pathToParamedicConfig):
-        ParamedicConfig.parseFromArguments(argv);
-
-    if (argv.justBuild || argv.justbuild) {
-        paramedicConfig.setAction('build');
-    }
-
-    if (argv.plugin) {
-        paramedicConfig.setPlugins(argv.plugin);
-    }
-
-    if (argv.outputDir) {
-        paramedicConfig.setOutputDir(argv.outputDir);
-    }
-
-    if (argv.logMins) {
-        paramedicConfig.setLogMins(argv.logMins);
-    }
-
-    if (argv.tccDb){
-        paramedicConfig.setTccDb(argv.tccDb);
-    }
-
-    if (argv.platform) {
-        paramedicConfig.setPlatform(argv.platform);
-    }
-
-    if (argv.action) {
-        paramedicConfig.setAction(argv.action);
-    }
-
-    if (argv.skipMainTests) {
-        paramedicConfig.setSkipMainTests(argv.skipMainTests);
-    }
-
-    if (argv.ci) {
-        paramedicConfig.setCI(argv.ci);
-    }
-
-    if (argv.target) {
-        paramedicConfig.setTarget(argv.target);
-    }
-
-    if (argv.cli) {
-        paramedicConfig.setCli(argv.cli);
-    }
-
-    if (argv.args) {
-        paramedicConfig.setArgs(argv.args);
-    }
-
-    paramedic.run(paramedicConfig)
-        .then((isTestPassed) => {
-            var exitCode = isTestPassed ? 0 : 1;
-            console.log('Finished with exit code ' + exitCode);
-            process.exit(exitCode);
-        })
-        .catch((error) => {
-            console.error(error && error.stack ? error.stack : error);
-            process.exit(1);
-        });
-
-} else {
+if (!pathToParamedicConfig && (!argv.platform || !argv.plugin)) {
     console.log(USAGE);
     process.exit(1);
 }
+
+const paramedicConfig = pathToParamedicConfig
+    ? ParamedicConfig.parseFromFile(pathToParamedicConfig)
+    : ParamedicConfig.parseFromArguments(argv);
+
+if (argv.justBuild || argv.justbuild) {
+    paramedicConfig.setAction('build');
+}
+
+if (argv.plugin) {
+    paramedicConfig.setPlugins(argv.plugin);
+}
+
+if (argv.outputDir) {
+    paramedicConfig.setOutputDir(argv.outputDir);
+}
+
+if (argv.tccDb) {
+    paramedicConfig.setTccDb(argv.tccDb);
+}
+
+if (argv.platform) {
+    paramedicConfig.setPlatform(argv.platform);
+}
+
+if (argv.action) {
+    paramedicConfig.setAction(argv.action);
+}
+
+if (argv.skipMainTests) {
+    paramedicConfig.setSkipMainTests(argv.skipMainTests);
+}
+
+if (argv.ci) {
+    paramedicConfig.setCI(argv.ci);
+}
+
+if (argv.target) {
+    paramedicConfig.setTarget(argv.target);
+}
+
+if (argv.cli) {
+    paramedicConfig.setCli(argv.cli);
+}
+
+if (argv.args) {
+    paramedicConfig.setArgs(argv.args);
+}
+
+paramedic.run(paramedicConfig)
+    .then((isTestPassed) => {
+        const exitCode = isTestPassed ? 0 : 1;
+        console.log('Finished with exit code ' + exitCode);
+        process.exit(exitCode);
+    })
+    .catch((error) => {
+        console.error(error && error.stack ? error.stack : error);
+        process.exit(1);
+    });
