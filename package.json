@@ -36,9 +36,9 @@
     "minimist": "^1.2.8",
     "tmp": "^0.2.5",
     "tree-kill": "^1.2.2",
-    "ws": "^8.18.3"
+    "ws": "^8.20.0"
   },
   "devDependencies": {
-    "@cordova/eslint-config": "^6.0.0"
+    "@cordova/eslint-config": "^6.0.1"
   }
 }
