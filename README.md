@@ -21,9 +21,12 @@
 
 # Cordova Paramedic (Test Automation)
 
-[![Android Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml)
-[![iOS Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml)
-[![Chrome Testsuite](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml)
+[![GitHub](https://img.shields.io/github/package-json/v/apache/cordova-paramedic?label=Development%20(Git))](https://github.com/apache/cordova-paramedic)
+[![GitHub - Android Workflow](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml/badge.svg?branch=master)](https://github.com/apache/cordova-paramedic/actions/workflows/android.yml?query=branch%3Amaster)
+[![GitHub - Chrome Workflow](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml/badge.svg?branch=master)](https://github.com/apache/cordova-paramedic/actions/workflows/chrome.yml?query=branch%3Amaster)
+[![GitHub - iOS Workflow](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml/badge.svg?branch=master)](https://github.com/apache/cordova-paramedic/actions/workflows/ios.yml?query=branch%3Amaster)
+[![GitHub - Lint](https://github.com/apache/cordova-paramedic/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/apache/cordova-paramedic/actions/workflows/lint.yml?query=branch%3Amaster)
+[![GitHub - Release Audit Workflow](https://github.com/apache/cordova-paramedic/actions/workflows/release-audit.yml/badge.svg?branch=master)](https://github.com/apache/cordova-paramedic/actions/workflows/release-audit.yml?query=branch%3Amaster)
 
 > Paramedic • _noun_ provides advanced levels of care at the point of illness or injury, including out of hospital treatment, and diagnostic services
 
