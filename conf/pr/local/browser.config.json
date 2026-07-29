@@ -1,6 +1,7 @@
 {
     "platform": "browser@latest",
     "action": "run",
+    "target": "chrome",
     "cleanUpAfterRun": true,
     "verbose": true
 }
