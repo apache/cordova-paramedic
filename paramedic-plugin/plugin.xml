@@ -36,13 +36,17 @@
 
     <config-file target="config.xml" parent="/*">
       <access origin="http://127.0.0.1:*/*" />
+      <access origin="http://localhost:*/*" />
       <access origin="http://10.0.2.2:*/*" />
       <access origin="ws://127.0.0.1:*/*" />
+      <access origin="ws://localhost:*/*" />
 
       <allow-navigation href="http://127.0.0.1:*/*" />
+      <allow-navigation href="http://localhost:*/*" />
       <allow-navigation href="http://10.0.2.2:*/*" />
 
       <allow-intent href="http://127.0.0.1:*/*" />
+      <allow-intent href="http://localhost:*/*" />
       <allow-intent href="http://10.0.2.2:*/*" />
   </config-file>
 
